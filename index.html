@@ -6,58 +6,22 @@
     <title>لباسِ ہدایہ - Premium Pakistani Fabrics 2026 | Lawn, Silk, Khaddar & More</title>
     <style>
         :root {
-            --bg: #0d0d0d;
-            --bg2: #1a1a1a;
-            --bg3: #222;
-            --card: #252525;
-            --gold: #c9a961;
-            --gold2: #d4af37;
-            --gold3: #b8942e;
-            --text: #f0f0f0;
-            --text2: #bbb;
-            --text3: #888;
-            --border: #333;
-            --accent: #c9a961;
-            --danger: #c0392b;
-            --success: #27ae60;
-            --shadow: 0 4px 20px rgba(0,0,0,0.5);
-            --radius: 10px;
-            --transition: 0.3s ease;
+            --bg: #0d0d0d; --bg2: #1a1a1a; --bg3: #222; --card: #252525; --gold: #c9a961;
+            --gold2: #d4af37; --gold3: #b8942e; --text: #f0f0f0; --text2: #bbb;
+            --text3: #888; --border: #333; --accent: #c9a961; --danger: #c0392b;
+            --success: #27ae60; --shadow: 0 4px 20px rgba(0,0,0,0.5); --radius: 10px; --transition: 0.3s ease;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        body { font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         .arabic { font-family: 'Scheherazade New', 'Amiri', 'Arial', sans-serif; font-size: 1.2em; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-
-        .top-bar {
-            background: #000; padding: 8px 30px; display: flex; justify-content: space-between;
-            align-items: center; font-size: 13px; color: var(--text2); border-bottom: 1px solid #1a1a1a;
-            flex-wrap: wrap; gap: 10px;
-        }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        .top-bar { background: #000; padding: 8px 30px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text2); border-bottom: 1px solid #1a1a1a; flex-wrap: wrap; gap: 10px; }
         .top-bar .contact-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
         .top-bar .contact-info span { display: flex; align-items: center; gap: 6px; color: var(--gold); font-weight: 500; }
-        .top-bar .order-cta {
-            background: var(--gold); color: #000; padding: 6px 16px; border-radius: 20px;
-            font-weight: 700; font-size: 12px; cursor: pointer; transition: var(--transition);
-            text-decoration: none; letter-spacing: 0.5px; animation: pulse-gold 2s infinite;
-        }
+        .top-bar .order-cta { background: var(--gold); color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 0.5px; animation: pulse-gold 2s infinite; }
         @keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(201,169,97,0.6); } 50% { box-shadow: 0 0 0 12px rgba(201,169,97,0); } }
         .top-bar .order-cta:hover { background: #fff; color: #000; transform: scale(1.05); }
-
-        .header {
-            background: var(--bg2); padding: 15px 30px; display: flex; justify-content: space-between;
-            align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
+        .header { background: var(--bg2); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
         .header .logo { font-size: 28px; font-weight: 800; letter-spacing: 1px; color: #fff; display: flex; align-items: baseline; gap: 6px; }
         .header .logo .arabic { color: var(--gold); font-size: 36px; }
         .header .logo .subtitle { font-size: 10px; letter-spacing: 3px; color: var(--text3); font-weight: 400; text-transform: uppercase; }
@@ -68,7 +32,6 @@
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .hamburger span { width: 28px; height: 3px; background: var(--gold); border-radius: 2px; transition: var(--transition); }
-
         .slider-container { position: relative; width: 100%; height: 550px; overflow: hidden; background: #000; }
         .slider-track { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
         .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
@@ -80,106 +43,71 @@
         .slide-content .btn-slide { display: inline-block; background: var(--gold); color: #000; padding: 12px 30px; border-radius: 30px; font-weight: 700; text-decoration: none; transition: var(--transition); letter-spacing: 0.5px; font-size: 14px; }
         .slide-content .btn-slide:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201,169,97,0.4); }
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.6); color: #fff; border: 2px solid var(--gold); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 20px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
-        .slider-arrow:hover { background: var(--gold); color: #000; }
-        .slider-arrow.prev { left: 20px; } .slider-arrow.next { right: 20px; }
+        .slider-arrow:hover { background: var(--gold); color: #000; } .slider-arrow.prev { left: 20px; } .slider-arrow.next { right: 20px; }
         .slider-dots { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
         .slider-dots .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
         .slider-dots .dot.active { background: var(--gold); border-color: #fff; width: 14px; height: 14px; }
-
         .section { padding: 60px 30px; max-width: 1300px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 40px; }
         .section-title h2 { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 1px; position: relative; display: inline-block; }
         .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--gold); border-radius: 2px; }
         .section-title p { color: var(--text3); margin-top: 15px; font-size: 14px; }
-
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 15px; }
         .category-card { background: var(--card); padding: 25px 15px; text-align: center; border-radius: var(--radius); cursor: pointer; transition: var(--transition); border: 2px solid transparent; position: relative; overflow: hidden; }
         .category-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: var(--shadow); }
-        .category-card .cat-icon { font-size: 40px; margin-bottom: 10px; }
-        .category-card h4 { color: #fff; font-size: 14px; font-weight: 600; }
-        .category-card .cat-count { color: var(--text3); font-size: 11px; }
-
+        .category-card .cat-icon { font-size: 40px; margin-bottom: 10px; } .category-card h4 { color: #fff; font-size: 14px; font-weight: 600; } .category-card .cat-count { color: var(--text3); font-size: 11px; }
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 22px; }
         .product-card { background: var(--card); border-radius: var(--radius); overflow: hidden; transition: var(--transition); border: 1px solid var(--border); position: relative; }
         .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.6); border-color: var(--gold); }
         .product-card .product-img { height: 280px; background-size: cover; background-position: center; position: relative; transition: var(--transition); }
         .product-card:hover .product-img { transform: scale(1.04); }
         .product-card .product-badge { position: absolute; top: 12px; left: 12px; background: var(--gold); color: #000; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-weight: 700; z-index: 2; letter-spacing: 1px; }
-        .product-card .product-info { padding: 18px; }
-        .product-card .product-category { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .product-card .product-info { padding: 18px; } .product-card .product-category { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
         .product-card h4 { color: #fff; font-size: 16px; margin-bottom: 6px; font-weight: 600; }
-        .product-card .price { font-size: 20px; font-weight: 700; color: var(--gold); }
-        .product-card .price .old-price { font-size: 13px; color: #777; text-decoration: line-through; margin-left: 8px; }
+        .product-card .price { font-size: 20px; font-weight: 700; color: var(--gold); } .product-card .price .old-price { font-size: 13px; color: #777; text-decoration: line-through; margin-left: 8px; }
         .product-card .btn-order { display: block; width: 100%; background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: var(--transition); letter-spacing: 0.5px; font-size: 13px; }
         .product-card .btn-order:hover { background: #fff; letter-spacing: 1px; }
-
         .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; }
         .filter-tab { padding: 10px 22px; border-radius: 25px; cursor: pointer; border: 2px solid var(--border); background: transparent; color: #ccc; font-weight: 500; transition: var(--transition); font-size: 13px; letter-spacing: 0.5px; }
-        .filter-tab:hover, .filter-tab.active { border-color: var(--gold); color: #fff; background: rgba(201,169,97,0.1); }
-        .filter-tab.active { background: var(--gold); color: #000; font-weight: 700; }
-
+        .filter-tab:hover, .filter-tab.active { border-color: var(--gold); color: #fff; background: rgba(201,169,97,0.1); } .filter-tab.active { background: var(--gold); color: #000; font-weight: 700; }
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         .modal { background: var(--bg2); border-radius: 16px; padding: 30px; max-width: 480px; width: 90%; text-align: center; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .modal h3 { color: #fff; font-size: 22px; margin-bottom: 10px; }
-        .modal .phone-big { font-size: 32px; font-weight: 800; color: var(--gold); letter-spacing: 2px; margin: 15px 0; }
+        .modal h3 { color: #fff; font-size: 22px; margin-bottom: 10px; } .modal .phone-big { font-size: 32px; font-weight: 800; color: var(--gold); letter-spacing: 2px; margin: 15px 0; }
         .modal .btn-wa { display: inline-block; background: #25d366; color: #fff; padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; margin: 8px; transition: var(--transition); }
-        .modal .btn-wa:hover { background: #1ebe5b; transform: scale(1.04); }
-        .modal .btn-call { display: inline-block; background: var(--gold); color: #000; padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; margin: 8px; transition: var(--transition); }
-        .modal .btn-call:hover { background: #fff; transform: scale(1.04); }
-        .modal .btn-close { background: transparent; color: #999; border: 1px solid #444; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin-top: 15px; font-size: 13px; transition: var(--transition); }
+        .modal .btn-wa:hover { background: #1ebe5b; transform: scale(1.04); } .modal .btn-call { display: inline-block; background: var(--gold); color: #000; padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; margin: 8px; transition: var(--transition); }
+        .modal .btn-call:hover { background: #fff; transform: scale(1.04); } .modal .btn-close { background: transparent; color: #999; border: 1px solid #444; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin-top: 15px; font-size: 13px; transition: var(--transition); }
         .modal .btn-close:hover { color: #fff; border-color: #fff; }
-
-        .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9998; display: none; align-items: center; justify-content: center; }
-        .admin-overlay.show { display: flex; }
+        .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9998; display: none; align-items: center; justify-content: center; } .admin-overlay.show { display: flex; }
         .admin-panel { background: var(--bg2); border-radius: 16px; width: 95%; max-width: 1000px; max-height: 90vh; overflow-y: auto; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 30px; }
         .admin-panel h3 { color: #fff; font-size: 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .admin-panel .close-admin { background: var(--danger); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 18px; transition: var(--transition); }
-        .admin-panel .close-admin:hover { background: #e74c3c; }
-        .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .admin-panel .close-admin:hover { background: #e74c3c; } .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .admin-tab { padding: 10px 20px; border-radius: 20px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: #ccc; font-weight: 500; transition: var(--transition); font-size: 13px; }
-        .admin-tab.active { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 700; }
-        .admin-form { display: flex; flex-direction: column; gap: 14px; }
+        .admin-tab.active { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 700; } .admin-form { display: flex; flex-direction: column; gap: 14px; }
         .admin-form input, .admin-form select, .admin-form textarea { background: var(--bg3); border: 1px solid var(--border); padding: 12px 15px; border-radius: 8px; color: #fff; font-size: 14px; font-family: inherit; transition: var(--transition); }
         .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,169,97,0.1); }
-        .admin-form textarea { resize: vertical; min-height: 80px; }
-        .admin-form .img-preview { width: 120px; height: 120px; border-radius: 8px; object-fit: cover; border: 2px solid var(--border); background: var(--bg3); }
+        .admin-form textarea { resize: vertical; min-height: 80px; } .admin-form .img-preview { width: 120px; height: 120px; border-radius: 8px; object-fit: cover; border: 2px solid var(--border); background: var(--bg3); }
         .admin-form button { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: var(--transition); font-size: 14px; letter-spacing: 0.5px; }
-        .admin-form button:hover { background: #fff; }
-        .admin-form button.delete-btn { background: var(--danger); color: #fff; }
-        .admin-form button.delete-btn:hover { background: #e74c3c; }
+        .admin-form button:hover { background: #fff; } .admin-form button.delete-btn { background: var(--danger); color: #fff; } .admin-form button.delete-btn:hover { background: #e74c3c; }
         .admin-product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; max-height: 400px; overflow-y: auto; }
         .admin-product-item { background: var(--bg3); border-radius: 8px; padding: 12px; text-align: center; border: 1px solid var(--border); position: relative; }
         .admin-product-item img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; margin-bottom: 8px; }
-        .admin-product-item h5 { color: #fff; font-size: 13px; margin: 5px 0; }
-        .admin-product-item .price { color: var(--gold); font-weight: 700; font-size: 14px; }
-        .admin-product-item .btn-row { display: flex; gap: 6px; margin-top: 8px; }
-        .admin-product-item .btn-row button { flex: 1; padding: 6px; font-size: 11px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; transition: var(--transition); }
+        .admin-product-item h5 { color: #fff; font-size: 13px; margin: 5px 0; } .admin-product-item .price { color: var(--gold); font-weight: 700; font-size: 14px; }
+        .admin-product-item .btn-row { display: flex; gap: 6px; margin-top: 8px; } .admin-product-item .btn-row button { flex: 1; padding: 6px; font-size: 11px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; transition: var(--transition); }
         .btn-edit { background: var(--gold); color: #000; } .btn-del { background: var(--danger); color: #fff; }
-
         .features-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; background: var(--bg2); padding: 30px; border-radius: var(--radius); margin: 40px 0; border: 1px solid var(--border); }
-        .feature-item { text-align: center; padding: 15px; }
-        .feature-item .feat-icon { font-size: 35px; margin-bottom: 10px; }
-        .feature-item h4 { color: #fff; font-size: 14px; font-weight: 600; }
-        .feature-item p { color: var(--text3); font-size: 12px; }
-
+        .feature-item { text-align: center; padding: 15px; } .feature-item .feat-icon { font-size: 35px; margin-bottom: 10px; } .feature-item h4 { color: #fff; font-size: 14px; font-weight: 600; } .feature-item p { color: var(--text3); font-size: 12px; }
         .footer { background: #000; padding: 40px 30px 20px; text-align: center; border-top: 1px solid var(--border); }
-        .footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; }
-        .footer .footer-links a { color: var(--text3); text-decoration: none; font-size: 13px; transition: var(--transition); }
-        .footer .footer-links a:hover { color: var(--gold); }
-        .footer .admin-link { color: #555; cursor: pointer; font-size: 11px; text-decoration: underline; transition: var(--transition); }
-        .footer .admin-link:hover { color: var(--gold); }
-        .footer p { color: #555; font-size: 12px; }
-
+        .footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; } .footer .footer-links a { color: var(--text3); text-decoration: none; font-size: 13px; transition: var(--transition); }
+        .footer .footer-links a:hover { color: var(--gold); } .footer .admin-link { color: #555; cursor: pointer; font-size: 11px; text-decoration: underline; transition: var(--transition); }
+        .footer .admin-link:hover { color: var(--gold); } .footer p { color: #555; font-size: 12px; }
         .float-wa { position: fixed; bottom: 25px; right: 25px; z-index: 999; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 6px 20px rgba(37,211,102,0.4); cursor: pointer; transition: var(--transition); text-decoration: none; animation: bounce-wa 2s infinite; }
-        @keyframes bounce-wa { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.6); }
+        @keyframes bounce-wa { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } } .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.6); }
         .float-call { position: fixed; bottom: 25px; left: 25px; z-index: 999; background: var(--gold); color: #000; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 6px 20px rgba(201,169,97,0.4); transition: var(--transition); text-decoration: none; letter-spacing: 0.5px; }
         .float-call:hover { background: #fff; transform: scale(1.05); }
-
         @media (max-width: 768px) {
-            .slider-container { height: 350px; }
-            .slide-content h1 { font-size: 26px; } .slide-content p { font-size: 13px; }
+            .slider-container { height: 350px; } .slide-content h1 { font-size: 26px; } .slide-content p { font-size: 13px; }
             .slider-arrow { width: 35px; height: 35px; font-size: 14px; } .slider-arrow.prev { left: 8px; } .slider-arrow.next { right: 8px; }
             .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); flex-direction: column; padding: 20px; border-bottom: 2px solid var(--gold); z-index: 999; }
             .nav-links.show { display: flex; } .hamburger { display: flex; } .header { padding: 12px 20px; }
@@ -188,11 +116,13 @@
             .top-bar { padding: 8px 15px; font-size: 11px; } .float-call { bottom: 15px; left: 10px; padding: 10px 16px; font-size: 12px; }
             .float-wa { bottom: 15px; right: 10px; width: 45px; height: 45px; font-size: 22px; } .admin-panel { padding: 20px; width: 98%; }
         }
-        @media (max-width: 480px) {
-            .slider-container { height: 250px; } .slide-content h1 { font-size: 20px; } .slide-content .tag { font-size: 10px; padding: 5px 12px; }
-            .section-title h2 { font-size: 22px; } .product-card .product-img { height: 160px; }
-        }
+        @media (max-width: 480px) { .slider-container { height: 250px; } .slide-content h1 { font-size: 20px; } .slide-content .tag { font-size: 10px; padding: 5px 12px; } .section-title h2 { font-size: 22px; } .product-card .product-img { height: 160px; } }
     </style>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js">
+    </script>
 </head>
 <body>
     <div class="top-bar">
@@ -203,7 +133,6 @@
         </div>
         <a href="tel:03194327821" class="order-cta">📞 ORDER NOW</a>
     </div>
-
     <header class="header">
         <div class="logo">
             <span class="arabic">لباسِ ہدایہ</span>
@@ -218,25 +147,21 @@
             <li><a href="tel:03194327821">📞 Order</a></li>
         </ul>
     </header>
-
     <div class="slider-container" id="heroSlider">
         <div class="slider-track" id="sliderTrack"></div>
         <button class="slider-arrow prev" onclick="changeSlide(-1)">◂</button>
         <button class="slider-arrow next" onclick="changeSlide(1)">▸</button>
         <div class="slider-dots" id="sliderDots"></div>
     </div>
-
     <section class="section" id="categories">
         <div class="section-title"><h2>Fabric Categories</h2><p>Explore our wide range of premium Pakistani fabrics for 2026</p></div>
         <div class="categories-grid" id="categoriesGrid"></div>
     </section>
-
     <section class="section" id="products">
         <div class="section-title"><h2>Our 2026 Fabric Collection</h2><p>Premium quality fabrics at the best prices</p></div>
         <div class="filter-tabs" id="filterTabs"><button class="filter-tab active" data-cat="all">All Fabrics</button></div>
         <div class="products-grid" id="productsGrid"></div>
     </section>
-
     <section class="section" id="about">
         <div class="features-bar">
             <div class="feature-item"><div class="feat-icon">🏭</div><h4>Premium Quality</h4><p>Finest Pakistani fabrics</p></div>
@@ -245,7 +170,6 @@
             <div class="feature-item"><div class="feat-icon">📞</div><h4>Easy Ordering</h4><p>Call & Order Directly</p></div>
         </div>
     </section>
-
     <footer class="footer">
         <div class="footer-links">
             <a href="#home">Home</a><a href="#products">Fabrics</a><a href="tel:03194327821">Order Now</a>
@@ -255,10 +179,8 @@
         <p style="margin-top:5px;">📞 Order via Call/WhatsApp: <strong style="color:#c9a961;">0319-4327821</strong></p>
         <span class="admin-link" onclick="openAdminLogin()" title="Admin Panel">🔑 Admin</span>
     </footer>
-
     <a href="https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order%20fabric%20from%20لباسِ%20ہدایہ%20Fabrics." target="_blank" class="float-wa" title="Order via WhatsApp">💬</a>
     <a href="tel:03194327821" class="float-call" title="Call to Order">📞 0319-4327821</a>
-
     <div class="modal-overlay" id="orderModal" style="display:none;">
         <div class="modal">
             <h3>🛒 Order Your Fabric</h3>
@@ -270,7 +192,6 @@
             <br><button class="btn-close" onclick="closeOrderModal()">Close</button>
         </div>
     </div>
-
     <div class="modal-overlay" id="adminLoginModal" style="display:none;">
         <div class="modal">
             <h3>🔐 Admin Login</h3>
@@ -281,26 +202,22 @@
             <button class="btn-close" onclick="closeAdminLogin()">Cancel</button>
         </div>
     </div>
-
     <div class="admin-overlay" id="adminOverlay">
         <div class="admin-panel" id="adminPanel">
-            <h3>⚙️ Admin Panel - لباسِ ہدایہ  <button class="close-admin" onclick="closeAdminPanel()">✕</button></h3>
+            <h3>⚙️ Admin Panel - لباسِ ہدایہ <button class="close-admin" onclick="closeAdminPanel()">✕</button></h3>
             <div class="admin-tabs">
                 <button class="admin-tab active" data-tab="tab-products">📦 Products</button>
                 <button class="admin-tab" data-tab="tab-add">➕ Add New</button>
                 <button class="admin-tab" data-tab="tab-slider">🎞️ Slider</button>
                 <button class="admin-tab" data-tab="tab-categories">🏷️ Categories</button>
             </div>
-
             <div id="tab-products" class="admin-tab-content"><h4 style="color:#fff;margin-bottom:12px;">All Products</h4><div class="admin-product-list" id="adminProductList"></div><p style="color:#888;font-size:11px;margin-top:10px;">Total: <span id="adminTotalProducts">0</span> products</p></div>
             <div id="tab-add" class="admin-tab-content" style="display:none;">
                 <h4 style="color:#fff;margin-bottom:12px;" id="formTitle">Add New Fabric</h4>
                 <form class="admin-form" id="productForm" onsubmit="saveProduct(event)">
                     <input type="hidden" id="editProductId" value="">
                     <input type="text" id="prodName" placeholder="Fabric Name *" required>
-                    <select id="prodCategory" required>
-                        <option value="">Select Category *</option>
-                    </select>
+                    <select id="prodCategory" required><option value="">Select Category *</option></select>
                     <input type="number" id="prodPrice" placeholder="Price (PKR) *" required>
                     <input type="number" id="prodOldPrice" placeholder="Old Price (optional)">
                     <textarea id="prodDesc" placeholder="Description"></textarea>
@@ -338,59 +255,51 @@
     </div>
 
     <script>
-        const STORAGE_KEY_PRODUCTS = 'libas_hidayah_products';
-        const STORAGE_KEY_SLIDER = 'libas_hidayah_slider';
-        const STORAGE_KEY_CATEGORIES = 'libas_hidayah_categories';
+        // ==================== FIREBASE CONFIG ====================
+        // ⚠️⚠️⚠️ YAHAN APNI FIREBASE CONFIG PASTE KARO ⚠️⚠️⚠️
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Firebase references
+        const productsRef = database.ref('products');
+        const sliderRef = database.ref('slider');
+        const categoriesRef = database.ref('categories');
+
         const ADMIN_USER = 'rafay1972';
         const ADMIN_PASS = '1972';
 
-        // Default categories
+        // Default data
         const defaultCategories = ['Lawn', 'Khaddar', 'Cotton', 'Silk', 'Chiffon', 'Linen', 'Jamawar', 'Karandi', 'Wash & Wear', 'Boski', 'Other'];
 
-        // Helper: Get a fabric texture image based on category (using Unsplash Source)
         function getCategoryImageUrl(category) {
             const base = 'https://source.unsplash.com/400x400/?';
             const keywords = {
-                'Lawn': 'lawn,fabric,textile',
-                'Khaddar': 'khaddar,wool,textile',
-                'Cotton': 'cotton,fabric',
-                'Silk': 'silk,satin,fabric',
-                'Chiffon': 'chiffon,dress,fabric',
-                'Linen': 'linen,textile',
-                'Jamawar': 'jamawar,shawl,embroidery',
-                'Karandi': 'karandi,textile',
-                'Wash & Wear': 'wash,wear,fabric',
-                'Boski': 'boski,silk',
-                'Other': 'fabric,textile'
+                'Lawn': 'lawn,fabric,textile', 'Khaddar': 'khaddar,wool,textile', 'Cotton': 'cotton,fabric',
+                'Silk': 'silk,satin,fabric', 'Chiffon': 'chiffon,dress,fabric', 'Linen': 'linen,textile',
+                'Jamawar': 'jamawar,shawl,embroidery', 'Karandi': 'karandi,textile', 'Wash & Wear': 'wash,wear,fabric',
+                'Boski': 'boski,silk', 'Other': 'fabric,textile'
             };
             return base + (keywords[category] || 'fabric,textile');
         }
 
-        // Default slider images: real celebrity/model fashion photos
         const defaultSlides = [
-            { 
-                image: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-                title: 'Exclusive Lawn 2026', 
-                subtitle: 'Lightweight summer styles worn by fashion icons' 
-            },
-            { 
-                image: 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-                title: 'Luxury Silk 2026', 
-                subtitle: 'Elegant drapes for every occasion' 
-            },
-            { 
-                image: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-                title: 'Winter Khaddar 2026', 
-                subtitle: 'Warm & premium quality worn with pride' 
-            },
-            { 
-                image: 'https://images.unsplash.com/photo-1601042878664-5d40f7f8a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-                title: 'Embroidered 2026', 
-                subtitle: 'Intricate designs that make you stand out' 
-            }
+            { image: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', title: 'Exclusive Lawn 2026', subtitle: 'Lightweight summer styles worn by fashion icons' },
+            { image: 'https://images.unsplash.com/photo-1604004555489-723a93d6ce74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', title: 'Luxury Silk 2026', subtitle: 'Elegant drapes for every occasion' },
+            { image: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', title: 'Winter Khaddar 2026', subtitle: 'Warm & premium quality worn with pride' },
+            { image: 'https://images.unsplash.com/photo-1601042878664-5d40f7f8a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', title: 'Embroidered 2026', subtitle: 'Intricate designs that make you stand out' }
         ];
 
-        // Default products with empty image (will use category image)
         const defaultProducts = [
             { id:1, name:'Premium Summer Lawn 2026', category:'Lawn', price:3500, oldPrice:4200, desc:'3-piece premium lawn suit with embroidered dupatta', image: '' },
             { id:2, name:'Pure Khaddar Winter 2026', category:'Khaddar', price:4200, oldPrice:5000, desc:'Warm khaddar fabric for winter, 2-piece suit', image: '' },
@@ -404,40 +313,48 @@
             { id:10, name:'Wash & Wear Daily 2026', category:'Wash & Wear', price:1800, oldPrice:2200, desc:'Easy care wash & wear fabric for daily use', image: '' }
         ];
 
-        function getCategories() {
-            const data = localStorage.getItem(STORAGE_KEY_CATEGORIES);
-            if (!data) {
-                localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(defaultCategories));
-                return defaultCategories.slice();
-            }
-            try { return JSON.parse(data); } catch(e) { return defaultCategories.slice(); }
+        // ==================== FIREBASE DATA FUNCTIONS ====================
+        async function getCategories() {
+            const snap = await categoriesRef.once('value');
+            if (snap.exists()) return snap.val();
+            await categoriesRef.set(defaultCategories);
+            return [...defaultCategories];
         }
-        function saveCategories(cats) { localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(cats)); }
+        async function saveCategoriesFB(cats) { await categoriesRef.set(cats); }
 
-        function getProducts() {
-            let data = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-            if (!data) {
-                const initProds = defaultProducts.map(p => ({...p, image: p.image || ''}));
-                localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(initProds));
-                return initProds;
-            }
-            try { return JSON.parse(data); } catch(e) { return []; }
+        async function getProducts() {
+            const snap = await productsRef.once('value');
+            if (snap.exists()) return snap.val();
+            const initProds = defaultProducts.map(p => ({...p, image: p.image || ''}));
+            await productsRef.set(initProds);
+            return initProds;
         }
-        function saveProducts(products) { localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products)); }
-        function getSliderData() {
-            let data = localStorage.getItem(STORAGE_KEY_SLIDER);
-            if (!data) { localStorage.setItem(STORAGE_KEY_SLIDER, JSON.stringify(defaultSlides)); return defaultSlides; }
-            try { return JSON.parse(data); } catch(e) { return defaultSlides; }
-        }
-        function saveSliderData(slides) { localStorage.setItem(STORAGE_KEY_SLIDER, JSON.stringify(slides)); }
+        async function saveProductsFB(products) { await productsRef.set(products); }
 
+        async function getSliderData() {
+            const snap = await sliderRef.once('value');
+            if (snap.exists()) return snap.val();
+            await sliderRef.set(defaultSlides);
+            return [...defaultSlides];
+        }
+        async function saveSliderDataFB(slides) { await sliderRef.set(slides); }
+
+        // ==================== GLOBAL VARIABLES ====================
         let currentSlide = 0, sliderInterval, sliderData = [];
+        let activeCategory = 'all';
+        let cachedProducts = [];
+        let cachedCategories = [];
 
+        // ==================== SLIDER ====================
         function initSlider() {
-            sliderData = getSliderData();
             const track = document.getElementById('sliderTrack');
             const dotsContainer = document.getElementById('sliderDots');
             track.innerHTML = ''; dotsContainer.innerHTML = '';
+            if (sliderData.length === 0) {
+                track.innerHTML = '<div class="slide" style="background:#1a1a1a;"><div class="slide-content"><h1>Welcome to لباسِ ہدایہ</h1><p>Premium Pakistani Fabrics 2026</p></div></div>';
+                dotsContainer.innerHTML = '<span class="dot active"></span>';
+                return;
+            }
             sliderData.forEach((slide, idx) => {
                 const div = document.createElement('div');
                 div.className = 'slide';
@@ -445,7 +362,7 @@
                 div.innerHTML = `<div class="slide-content"><span class="tag">لباسِ ہدایہ </span><h1>${slide.title}</h1><p>${slide.subtitle}</p><a href="tel:03194327821" class="btn-slide">📞 Order Now</a></div>`;
                 track.appendChild(div);
                 const dot = document.createElement('span');
-                dot.className = 'dot' + (idx===0?' active':'');
+                dot.className = 'dot' + (idx === 0 ? ' active' : '');
                 dot.onclick = () => goToSlide(idx);
                 dotsContainer.appendChild(dot);
             });
@@ -454,8 +371,9 @@
         }
 
         function updateSliderPosition() {
-            document.getElementById('sliderTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
-            document.querySelectorAll('#sliderDots .dot').forEach((d,i) => d.classList.toggle('active', i===currentSlide));
+            const track = document.getElementById('sliderTrack');
+            if (track) track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('#sliderDots .dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
         }
 
         function changeSlide(dir) {
@@ -467,6 +385,7 @@
         function goToSlide(idx) { currentSlide = idx; updateSliderPosition(); resetAutoSlide(); }
 
         function startAutoSlide() {
+            clearInterval(sliderInterval);
             sliderInterval = setInterval(() => {
                 const total = sliderData.length || 1;
                 currentSlide = (currentSlide + 1) % total;
@@ -475,33 +394,21 @@
         }
         function resetAutoSlide() { clearInterval(sliderInterval); startAutoSlide(); }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const sliderContainer = document.getElementById('heroSlider');
-            if(sliderContainer) {
-                sliderContainer.addEventListener('mouseenter', () => clearInterval(sliderInterval));
-                sliderContainer.addEventListener('mouseleave', startAutoSlide);
-            }
-        });
-
-        let activeCategory = 'all';
-
+        // ==================== RENDER FUNCTIONS ====================
         function populateCategorySelect() {
             const select = document.getElementById('prodCategory');
-            if(!select) return;
-            const categories = getCategories();
+            if (!select) return;
             select.innerHTML = '<option value="">Select Category *</option>';
-            categories.forEach(cat => {
+            cachedCategories.forEach(cat => {
                 select.innerHTML += `<option value="${cat}">${cat}</option>`;
             });
         }
 
         function renderCategories() {
-            const products = getProducts();
-            const categories = getCategories();
             const filterTabs = document.getElementById('filterTabs');
-            filterTabs.innerHTML = `<button class="filter-tab${activeCategory==='all'?' active':''}" data-cat="all">All Fabrics</button>`;
-            categories.forEach(cat => {
-                filterTabs.innerHTML += `<button class="filter-tab${activeCategory===cat?' active':''}" data-cat="${cat}">${cat}</button>`;
+            filterTabs.innerHTML = `<button class="filter-tab${activeCategory === 'all' ? ' active' : ''}" data-cat="all">All Fabrics</button>`;
+            cachedCategories.forEach(cat => {
+                filterTabs.innerHTML += `<button class="filter-tab${activeCategory === cat ? ' active' : ''}" data-cat="${cat}">${cat}</button>`;
             });
             document.querySelectorAll('#filterTabs .filter-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -512,11 +419,9 @@
             });
 
             const catGrid = document.getElementById('categoriesGrid');
-            const catIcons = {
-                'Lawn':'🌿','Khaddar':'🧣','Cotton':'🌾','Silk':'✨','Chiffon':'💎','Linen':'🍃','Jamawar':'🏵️','Karandi':'🧵','Wash & Wear':'👕','Boski':'🌟','Other':'🧶'
-            };
-            catGrid.innerHTML = categories.map(cat => {
-                const count = products.filter(p => p.category === cat).length;
+            const catIcons = { 'Lawn':'🌿','Khaddar':'🧣','Cotton':'🌾','Silk':'✨','Chiffon':'💎','Linen':'🍃','Jamawar':'🏵️','Karandi':'🧵','Wash & Wear':'👕','Boski':'🌟','Other':'🧶' };
+            catGrid.innerHTML = cachedCategories.map(cat => {
+                const count = cachedProducts.filter(p => p.category === cat).length;
                 const icon = catIcons[cat] || '🧵';
                 return `<div class="category-card" onclick="filterByCategory('${cat}')"><div class="cat-icon">${icon}</div><h4>${cat}</h4><span class="cat-count">${count} items</span></div>`;
             }).join('');
@@ -525,61 +430,67 @@
         function filterByCategory(cat) { activeCategory = cat; renderCategories(); renderProducts(); document.getElementById('products').scrollIntoView({behavior:'smooth'}); }
 
         function renderProducts() {
-            const products = getProducts();
-            const filtered = activeCategory==='all' ? products : products.filter(p => p.category === activeCategory);
+            const filtered = activeCategory === 'all' ? cachedProducts : cachedProducts.filter(p => p.category === activeCategory);
             const grid = document.getElementById('productsGrid');
-            if(filtered.length===0){ grid.innerHTML='<p style="color:#888;text-align:center;grid-column:1/-1;padding:40px;">No products found.</p>'; return; }
+            if (filtered.length === 0) { grid.innerHTML = '<p style="color:#888;text-align:center;grid-column:1/-1;padding:40px;">No products found.</p>'; return; }
             grid.innerHTML = filtered.map(p => {
-                const imgSrc = p.image && p.image.trim()!=='' ? p.image : getCategoryImageUrl(p.category);
+                const imgSrc = p.image && p.image.trim() !== '' ? p.image : getCategoryImageUrl(p.category);
                 return `<div class="product-card">
-                    <div class="product-img" style="background-image:url(${imgSrc})">${p.oldPrice&&p.oldPrice>p.price?'<span class="product-badge">SALE</span>':''}</div>
+                    <div class="product-img" style="background-image:url(${imgSrc})">${p.oldPrice && p.oldPrice > p.price ? '<span class="product-badge">SALE</span>' : ''}</div>
                     <div class="product-info">
                         <div class="product-category">${p.category}</div>
                         <h4>${p.name}</h4>
-                        <div class="price">Rs. ${p.price.toLocaleString()}${p.oldPrice&&p.oldPrice>p.price?`<span class="old-price">Rs. ${p.oldPrice.toLocaleString()}</span>`:''}</div>
-                        <button class="btn-order" onclick="openOrderModal('${p.name.replace(/'/g,"\\'")}', ${p.price})">📞 Order Now</button>
+                        <div class="price">Rs. ${p.price.toLocaleString()}${p.oldPrice && p.oldPrice > p.price ? `<span class="old-price">Rs. ${p.oldPrice.toLocaleString()}</span>` : ''}</div>
+                        <button class="btn-order" onclick="openOrderModal('${p.name.replace(/'/g, "\\'")}', ${p.price})">📞 Order Now</button>
                     </div>
                 </div>`;
             }).join('');
         }
 
+        // ==================== ORDER MODAL ====================
         function openOrderModal(productName, price) {
             document.getElementById('orderProductName').textContent = `Product: ${productName} - Rs. ${price.toLocaleString()}`;
             document.getElementById('orderModal').style.display = 'flex';
             const waLink = document.querySelector('#orderModal .btn-wa');
-            if(waLink) waLink.href = `https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order:%20${encodeURIComponent(productName)}%20-%20Rs.%20${price}`;
+            if (waLink) waLink.href = `https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order:%20${encodeURIComponent(productName)}%20-%20Rs.%20${price}`;
         }
         function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
 
-        function openAdminLogin() { document.getElementById('adminLoginModal').style.display='flex'; }
-        function closeAdminLogin() { document.getElementById('adminLoginModal').style.display='none'; }
+        // ==================== ADMIN LOGIN ====================
+        function openAdminLogin() { document.getElementById('adminLoginModal').style.display = 'flex'; document.getElementById('loginError').style.display = 'none'; }
+        function closeAdminLogin() { document.getElementById('adminLoginModal').style.display = 'none'; }
         function adminLogin() {
-            if(document.getElementById('adminUser').value.trim()===ADMIN_USER && document.getElementById('adminPass').value.trim()===ADMIN_PASS){
-                document.getElementById('adminLoginModal').style.display='none'; openAdminPanel();
-            } else { document.getElementById('loginError').style.display='block'; }
+            if (document.getElementById('adminUser').value.trim() === ADMIN_USER && document.getElementById('adminPass').value.trim() === ADMIN_PASS) {
+                document.getElementById('adminLoginModal').style.display = 'none';
+                openAdminPanel();
+            } else { document.getElementById('loginError').style.display = 'block'; }
         }
         function openAdminPanel() { document.getElementById('adminOverlay').classList.add('show'); refreshAdminProducts(); refreshAdminSlider(); refreshAdminCategories(); switchAdminTab('tab-products'); }
-        function closeAdminPanel() { document.getElementById('adminOverlay').classList.remove('show'); initSlider(); renderCategories(); renderProducts(); }
+        function closeAdminPanel() {
+            document.getElementById('adminOverlay').classList.remove('show');
+            loadAllData();
+        }
 
         function switchAdminTab(tabId) {
-            document.querySelectorAll('.admin-tab-content').forEach(t=>t.style.display='none');
-            document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-            document.getElementById(tabId).style.display='block';
-            document.querySelector(`.admin-tab[data-tab="${tabId}"]`)?.classList.add('active');
-            if(tabId==='tab-products') refreshAdminProducts();
-            if(tabId==='tab-slider') refreshAdminSlider();
-            if(tabId==='tab-categories') refreshAdminCategories();
-            if(tabId==='tab-add') populateCategorySelect();
+            document.querySelectorAll('.admin-tab-content').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            const el = document.getElementById(tabId);
+            if (el) el.style.display = 'block';
+            const tabBtn = document.querySelector(`.admin-tab[data-tab="${tabId}"]`);
+            if (tabBtn) tabBtn.classList.add('active');
+            if (tabId === 'tab-products') refreshAdminProducts();
+            if (tabId === 'tab-slider') refreshAdminSlider();
+            if (tabId === 'tab-categories') refreshAdminCategories();
+            if (tabId === 'tab-add') populateCategorySelect();
         }
-        document.addEventListener('click', e => { if(e.target.classList.contains('admin-tab')) switchAdminTab(e.target.dataset.tab); });
 
+        // ==================== ADMIN PRODUCTS ====================
         function refreshAdminProducts() {
-            const products = getProducts();
-            document.getElementById('adminTotalProducts').textContent = products.length;
             const list = document.getElementById('adminProductList');
-            if(products.length===0){ list.innerHTML='<p style="color:#888;">No products yet.</p>'; return; }
-            list.innerHTML = products.map(p => {
-                const imgSrc = p.image && p.image.trim()!=='' ? p.image : getCategoryImageUrl(p.category);
+            document.getElementById('adminTotalProducts').textContent = cachedProducts.length;
+            if (cachedProducts.length === 0) { list.innerHTML = '<p style="color:#888;">No products yet.</p>'; return; }
+            list.innerHTML = cachedProducts.map(p => {
+                const imgSrc = p.image && p.image.trim() !== '' ? p.image : getCategoryImageUrl(p.category);
                 return `<div class="admin-product-item">
                     <img src="${imgSrc}" alt="${p.name}">
                     <h5>${p.name}</h5><div class="price">Rs. ${p.price.toLocaleString()}</div><small style="color:#999;">${p.category}</small>
@@ -589,101 +500,139 @@
         }
 
         function editProduct(id) {
-            const p = getProducts().find(pr=>pr.id===id); if(!p) return;
+            const p = cachedProducts.find(pr => pr.id === id); if (!p) return;
             populateCategorySelect();
-            document.getElementById('editProductId').value=p.id; document.getElementById('prodName').value=p.name;
-            document.getElementById('prodCategory').value=p.category; document.getElementById('prodPrice').value=p.price;
-            document.getElementById('prodOldPrice').value=p.oldPrice||''; document.getElementById('prodDesc').value=p.desc||'';
-            document.getElementById('prodImageData').value=p.image||''; document.getElementById('formTitle').textContent='Edit Fabric';
-            document.getElementById('btnDeleteEdit').style.display='inline-block';
+            document.getElementById('editProductId').value = p.id; document.getElementById('prodName').value = p.name;
+            document.getElementById('prodCategory').value = p.category; document.getElementById('prodPrice').value = p.price;
+            document.getElementById('prodOldPrice').value = p.oldPrice || ''; document.getElementById('prodDesc').value = p.desc || '';
+            document.getElementById('prodImageData').value = p.image || ''; document.getElementById('formTitle').textContent = 'Edit Fabric';
+            document.getElementById('btnDeleteEdit').style.display = 'inline-block';
             const preview = document.getElementById('prodImagePreview');
-            if(p.image && p.image.trim()!==''){ preview.src=p.image; preview.style.display='block'; } else { preview.style.display='none'; }
+            if (p.image && p.image.trim() !== '') { preview.src = p.image; preview.style.display = 'block'; } else { preview.style.display = 'none'; }
             switchAdminTab('tab-add');
         }
-        function deleteProduct(id) { if(!confirm('Delete?')) return; let prods=getProducts(); prods=prods.filter(p=>p.id!==id); saveProducts(prods); refreshAdminProducts(); renderCategories(); renderProducts(); resetForm(); }
-        function deleteProductFromForm() { const id=parseInt(document.getElementById('editProductId').value); if(id) deleteProduct(id); }
-        function resetForm() {
-            document.getElementById('editProductId').value=''; document.getElementById('prodName').value=''; document.getElementById('prodCategory').value='';
-            document.getElementById('prodPrice').value=''; document.getElementById('prodOldPrice').value=''; document.getElementById('prodDesc').value='';
-            document.getElementById('prodImageData').value=''; document.getElementById('prodImagePreview').style.display='none';
-            document.getElementById('formTitle').textContent='Add New Fabric'; document.getElementById('btnDeleteEdit').style.display='none';
+
+        async function deleteProduct(id) {
+            if (!confirm('Delete this product?')) return;
+            cachedProducts = cachedProducts.filter(p => p.id !== id);
+            await saveProductsFB(cachedProducts);
+            refreshAdminProducts();
+            renderCategories();
+            renderProducts();
+            resetForm();
         }
+        function deleteProductFromForm() { const id = parseInt(document.getElementById('editProductId').value); if (id) deleteProduct(id); }
+        function resetForm() {
+            document.getElementById('editProductId').value = ''; document.getElementById('prodName').value = ''; document.getElementById('prodCategory').value = '';
+            document.getElementById('prodPrice').value = ''; document.getElementById('prodOldPrice').value = ''; document.getElementById('prodDesc').value = '';
+            document.getElementById('prodImageData').value = ''; document.getElementById('prodImagePreview').style.display = 'none';
+            document.getElementById('formTitle').textContent = 'Add New Fabric'; document.getElementById('btnDeleteEdit').style.display = 'none';
+        }
+
         function previewProductImage() {
-            const file = document.getElementById('prodImage').files[0]; if(!file) return;
-            if(file.size>2*1024*1024){ alert('Image too large.'); return; }
+            const file = document.getElementById('prodImage').files[0]; if (!file) return;
+            if (file.size > 2 * 1024 * 1024) { alert('Image too large (max 2MB).'); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image(); img.onload = function() {
-                    const canvas = document.createElement('canvas'); const maxW=400; const scale=Math.min(1,maxW/img.width);
-                    canvas.width=img.width*scale; canvas.height=img.height*scale; const ctx=canvas.getContext('2d');
-                    ctx.drawImage(img,0,0,canvas.width,canvas.height); const compressed=canvas.toDataURL('image/jpeg',0.75);
-                    document.getElementById('prodImageData').value=compressed;
-                    document.getElementById('prodImagePreview').src=compressed; document.getElementById('prodImagePreview').style.display='block';
-                }; img.src=e.target.result;
+                    const canvas = document.createElement('canvas'); const maxW = 400; const scale = Math.min(1, maxW / img.width);
+                    canvas.width = img.width * scale; canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const compressed = canvas.toDataURL('image/jpeg', 0.75);
+                    document.getElementById('prodImageData').value = compressed;
+                    document.getElementById('prodImagePreview').src = compressed;
+                    document.getElementById('prodImagePreview').style.display = 'block';
+                }; img.src = e.target.result;
             }; reader.readAsDataURL(file);
         }
-        function saveProduct(e) {
+
+        async function saveProduct(e) {
             e.preventDefault();
-            const id=document.getElementById('editProductId').value, name=document.getElementById('prodName').value.trim();
-            const category=document.getElementById('prodCategory').value, price=parseInt(document.getElementById('prodPrice').value);
-            const oldPrice=parseInt(document.getElementById('prodOldPrice').value)||0, desc=document.getElementById('prodDesc').value.trim();
-            const imageData=document.getElementById('prodImageData').value;
-            if(!name||!category||!price){ alert('Fill required fields.'); return; }
-            let products=getProducts();
-            if(id){
-                const idx=products.findIndex(p=>p.id===parseInt(id));
-                if(idx>=0){ products[idx].name=name; products[idx].category=category; products[idx].price=price; products[idx].oldPrice=oldPrice; products[idx].desc=desc; if(imageData) products[idx].image=imageData; }
+            const id = document.getElementById('editProductId').value;
+            const name = document.getElementById('prodName').value.trim();
+            const category = document.getElementById('prodCategory').value;
+            const price = parseInt(document.getElementById('prodPrice').value);
+            const oldPrice = parseInt(document.getElementById('prodOldPrice').value) || 0;
+            const desc = document.getElementById('prodDesc').value.trim();
+            const imageData = document.getElementById('prodImageData').value;
+            if (!name || !category || !price) { alert('Please fill Name, Category, and Price.'); return; }
+
+            if (id) {
+                const idx = cachedProducts.findIndex(p => p.id === parseInt(id));
+                if (idx >= 0) {
+                    cachedProducts[idx].name = name; cachedProducts[idx].category = category;
+                    cachedProducts[idx].price = price; cachedProducts[idx].oldPrice = oldPrice;
+                    cachedProducts[idx].desc = desc; if (imageData) cachedProducts[idx].image = imageData;
+                }
             } else {
-                const newId=products.length>0?Math.max(...products.map(p=>p.id))+1:1;
-                products.push({id:newId,name,category,price,oldPrice,desc,image:imageData||'', imageColor:''});
+                const newId = cachedProducts.length > 0 ? Math.max(...cachedProducts.map(p => p.id)) + 1 : 1;
+                cachedProducts.push({ id: newId, name, category, price, oldPrice, desc, image: imageData || '', imageColor: '' });
             }
-            saveProducts(products); resetForm(); refreshAdminProducts(); renderCategories(); renderProducts(); switchAdminTab('tab-products'); alert('✅ Saved!');
+            await saveProductsFB(cachedProducts);
+            resetForm();
+            refreshAdminProducts();
+            renderCategories();
+            renderProducts();
+            switchAdminTab('tab-products');
+            alert('✅ Fabric saved!');
         }
 
+        // ==================== ADMIN SLIDER ====================
         function refreshAdminSlider() {
-            const slides=getSliderData(); const list=document.getElementById('adminSliderList');
-            if(slides.length===0){ list.innerHTML='<p style="color:#888;">No slider images.</p>'; }
-            else list.innerHTML = slides.map((s,i) => `<div class="admin-product-item"><img src="${s.image}" style="height:80px;"><h5>${s.title||'Slide'}</h5><small>${s.subtitle||''}</small><button class="btn-del" style="margin-top:6px;width:100%;padding:6px;border-radius:5px;cursor:pointer;background:#c0392b;color:#fff;border:none;font-weight:600;" onclick="removeSliderImage(${i})">🗑️ Remove</button></div>`).join('');
+            const list = document.getElementById('adminSliderList');
+            if (sliderData.length === 0) { list.innerHTML = '<p style="color:#888;">No slider images.</p>'; return; }
+            list.innerHTML = sliderData.map((s, i) => `<div class="admin-product-item"><img src="${s.image}" style="height:80px;"><h5>${s.title || 'Slide'}</h5><small>${s.subtitle || ''}</small><button class="btn-del" style="margin-top:6px;width:100%;padding:6px;border-radius:5px;cursor:pointer;background:#c0392b;color:#fff;border:none;font-weight:600;" onclick="removeSliderImage(${i})">🗑️ Remove</button></div>`).join('');
         }
-        function addSliderImage(e) {
+
+        async function addSliderImage(e) {
             e.preventDefault();
             const file = document.getElementById('sliderImageFile').files[0];
-            if(!file) { alert('Select an image.'); return; }
-            if(file.size > 2*1024*1024) { alert('Image too large.'); return; }
+            if (!file) { alert('Select an image.'); return; }
+            if (file.size > 2 * 1024 * 1024) { alert('Image too large.'); return; }
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = async function(e) {
                 const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas'); const maxW=1200; const scale=Math.min(1, maxW/img.width);
-                    canvas.width = img.width*scale; canvas.height = img.height*scale;
-                    const ctx = canvas.getContext('2d'); ctx.drawImage(img,0,0,canvas.width,canvas.height);
-                    const compressed = canvas.toDataURL('image/jpeg',0.7);
+                img.onload = async function() {
+                    const canvas = document.createElement('canvas'); const maxW = 1200; const scale = Math.min(1, maxW / img.width);
+                    canvas.width = img.width * scale; canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const compressed = canvas.toDataURL('image/jpeg', 0.7);
                     const title = document.getElementById('sliderTitle').value.trim() || 'New Arrival';
                     const subtitle = document.getElementById('sliderSubtitle').value.trim() || 'Premium Fabric';
-                    let slides = getSliderData();
-                    if(slides.length >= 6) { alert('Max 6 slides.'); return; }
-                    slides.push({image:compressed, title, subtitle});
-                    saveSliderData(slides);
-                    refreshAdminSlider(); initSlider();
-                    document.getElementById('sliderImageFile').value=''; document.getElementById('sliderTitle').value='';
-                    document.getElementById('sliderSubtitle').value=''; document.getElementById('sliderImagePreview').style.display='none';
-                    alert('Added!');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-        function removeSliderImage(idx) { if(!confirm('Remove?')) return; let slides=getSliderData(); slides.splice(idx,1); saveSliderData(slides); refreshAdminSlider(); initSlider(); }
-        function previewSliderImage() {
-            const file=document.getElementById('sliderImageFile').files[0]; if(!file) return;
-            const reader=new FileReader(); reader.onload=function(e){ document.getElementById('sliderImagePreview').src=e.target.result; document.getElementById('sliderImagePreview').style.display='block'; }; reader.readAsDataURL(file);
+                    if (sliderData.length >= 6) { alert('Max 6 slides allowed.'); return; }
+                    sliderData.push({ image: compressed, title, subtitle });
+                    await saveSliderDataFB(sliderData);
+                    refreshAdminSlider();
+                    initSlider();
+                    document.getElementById('sliderImageFile').value = '';
+                    document.getElementById('sliderTitle').value = '';
+                    document.getElementById('sliderSubtitle').value = '';
+                    document.getElementById('sliderImagePreview').style.display = 'none';
+                    alert('✅ Slider added!');
+                }; img.src = e.target.result;
+            }; reader.readAsDataURL(file);
         }
 
+        async function removeSliderImage(idx) {
+            if (!confirm('Remove this slider image?')) return;
+            sliderData.splice(idx, 1);
+            await saveSliderDataFB(sliderData);
+            refreshAdminSlider();
+            initSlider();
+        }
+
+        function previewSliderImage() {
+            const file = document.getElementById('sliderImageFile').files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) { document.getElementById('sliderImagePreview').src = e.target.result; document.getElementById('sliderImagePreview').style.display = 'block'; };
+            reader.readAsDataURL(file);
+        }
+
+        // ==================== ADMIN CATEGORIES ====================
         function refreshAdminCategories() {
-            const cats = getCategories();
             const list = document.getElementById('adminCategoryList');
-            list.innerHTML = cats.map((cat, idx) => `
-                <div class="admin-product-item" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            list.innerHTML = cachedCategories.map((cat, idx) => `
+                <div class="admin-product-item" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
                     <h5>${cat}</h5>
                     <div class="btn-row">
                         <button class="btn-edit" onclick="editCategory(${idx})">✏️</button>
@@ -691,48 +640,45 @@
                     </div>
                 </div>`).join('');
         }
-        function addCategory() {
+
+        async function addCategory() {
             const input = document.getElementById('newCategoryName');
             const name = input.value.trim();
-            if(!name) return alert('Enter a category name.');
-            const cats = getCategories();
-            if(cats.includes(name)) return alert('Category already exists.');
-            cats.push(name);
-            saveCategories(cats);
+            if (!name) return alert('Enter a category name.');
+            if (cachedCategories.includes(name)) return alert('Category already exists.');
+            cachedCategories.push(name);
+            await saveCategoriesFB(cachedCategories);
             input.value = '';
             refreshAdminCategories();
             populateCategorySelect();
             renderCategories();
-            alert('Category added!');
+            alert('✅ Category added!');
         }
-        function editCategory(index) {
-            const cats = getCategories();
-            const newName = prompt('Enter new name for category:', cats[index]);
-            if(newName && newName.trim()!=='' && newName!==cats[index]) {
-                const updatedName = newName.trim();
-                if(cats.includes(updatedName)) return alert('Category name already exists.');
-                const oldName = cats[index];
-                const products = getProducts();
-                products.forEach(p => { if(p.category === oldName) p.category = updatedName; });
-                saveProducts(products);
-                cats[index] = updatedName;
-                saveCategories(cats);
+
+        async function editCategory(index) {
+            const newName = prompt('Enter new name:', cachedCategories[index]);
+            if (newName && newName.trim() !== '' && newName.trim() !== cachedCategories[index]) {
+                if (cachedCategories.includes(newName.trim())) return alert('Name already exists.');
+                const oldName = cachedCategories[index];
+                cachedProducts.forEach(p => { if (p.category === oldName) p.category = newName.trim(); });
+                await saveProductsFB(cachedProducts);
+                cachedCategories[index] = newName.trim();
+                await saveCategoriesFB(cachedCategories);
                 refreshAdminCategories();
                 populateCategorySelect();
                 renderCategories();
                 renderProducts();
-                alert('Category renamed. All associated products updated.');
+                alert('✅ Category renamed.');
             }
         }
-        function deleteCategory(index) {
-            const cats = getCategories();
-            const catName = cats[index];
-            const products = getProducts();
-            const count = products.filter(p => p.category === catName).length;
-            if(count > 0 && !confirm(`Category "${catName}" has ${count} products. Delete anyway? (Products will remain but category will be removed from filters)`)) return;
-            if(count === 0 || confirm('Proceed?')) {
-                cats.splice(index,1);
-                saveCategories(cats);
+
+        async function deleteCategory(index) {
+            const catName = cachedCategories[index];
+            const count = cachedProducts.filter(p => p.category === catName).length;
+            if (count > 0 && !confirm(`Category "${catName}" has ${count} products. Delete anyway?`)) return;
+            if (count === 0 || confirm('Proceed?')) {
+                cachedCategories.splice(index, 1);
+                await saveCategoriesFB(cachedCategories);
                 refreshAdminCategories();
                 populateCategorySelect();
                 renderCategories();
@@ -740,21 +686,55 @@
             }
         }
 
+        // ==================== LOAD ALL DATA FROM FIREBASE ====================
+        async function loadAllData() {
+            try {
+                const [cats, prods, slides] = await Promise.all([
+                    getCategories(),
+                    getProducts(),
+                    getSliderData()
+                ]);
+                cachedCategories = cats;
+                cachedProducts = prods;
+                sliderData = slides;
+                initSlider();
+                renderCategories();
+                renderProducts();
+                populateCategorySelect();
+                console.log('✅ All data loaded from Firebase');
+            } catch (err) {
+                console.error('Firebase load error:', err);
+                // Fallback to defaults
+                cachedCategories = [...defaultCategories];
+                cachedProducts = defaultProducts.map(p => ({...p}));
+                sliderData = [...defaultSlides];
+                initSlider();
+                renderCategories();
+                renderProducts();
+                populateCategorySelect();
+            }
+        }
+
+        // ==================== MOBILE MENU & EVENT LISTENERS ====================
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('show'); }
-        document.addEventListener('click', e => { if(e.target.closest('#navLinks a')) document.getElementById('navLinks').classList.remove('show'); });
-        document.getElementById('orderModal').addEventListener('click', e => { if(e.target===e.currentTarget) closeOrderModal(); });
-        document.getElementById('adminLoginModal').addEventListener('click', e => { if(e.target===e.currentTarget) closeAdminLogin(); });
-        document.getElementById('adminOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeAdminPanel(); });
-        document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeOrderModal(); closeAdminLogin(); } });
-        document.getElementById('adminPass').addEventListener('keydown', e => { if(e.key==='Enter') adminLogin(); });
+        document.addEventListener('click', e => { if (e.target.closest('#navLinks a')) document.getElementById('navLinks').classList.remove('show'); });
+        document.getElementById('orderModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeOrderModal(); });
+        document.getElementById('adminLoginModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeAdminLogin(); });
+        document.getElementById('adminOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeAdminPanel(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeOrderModal(); closeAdminLogin(); } });
+        document.getElementById('adminPass').addEventListener('keydown', e => { if (e.key === 'Enter') adminLogin(); });
+        document.addEventListener('click', e => { if (e.target.classList.contains('admin-tab')) switchAdminTab(e.target.dataset.tab); });
 
-        function init() {
-            initSlider();
-            renderCategories();
-            renderProducts();
-            populateCategorySelect();
-        }
-        document.addEventListener('DOMContentLoaded', init);
+        // Slider hover pause
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderContainer = document.getElementById('heroSlider');
+            if (sliderContainer) {
+                sliderContainer.addEventListener('mouseenter', () => clearInterval(sliderInterval));
+                sliderContainer.addEventListener('mouseleave', startAutoSlide);
+            }
+            // Load all data from Firebase
+            loadAllData();
+        });
     </script>
 </body>
 </html>

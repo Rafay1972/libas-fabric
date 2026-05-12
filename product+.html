@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | لباسِ ہدایہ</title>
+    <style>
+        :root { --bg: #0d0d0d; --bg2: #1a1a1a; --card: #252525; --gold: #c9a961; --text: #f0f0f0; --text2: #bbb; --border: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: var(--bg2); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
+        h1 { color: #fff; } .category { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
+        .price { font-size: 28px; font-weight: 800; color: var(--gold); margin: 15px 0; }
+        .desc { color: #ccc; margin: 15px 0; line-height: 1.6; }
+        .gallery { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .gallery img { width: 100%; max-width: 200px; height: 200px; object-fit: cover; border-radius: 10px; border: 2px solid var(--border); cursor: pointer; transition: 0.3s; }
+        .gallery img:hover { border-color: var(--gold); transform: scale(1.03); }
+        .btn { background: var(--gold); color: #000; padding: 12px 25px; border-radius: 30px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 10px; margin-right: 10px; }
+        .btn:hover { background: #fff; } .btn-wa { background: #25d366; color: #fff; } .btn-wa:hover { background: #1ebe5b; }
+        .related { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 15px; margin-top: 25px; }
+        .related-card { background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); text-decoration: none; color: #fff; display: block; }
+        .related-card img { width: 100%; height: 120px; object-fit: cover; } .related-card .info { padding: 10px; font-size: 13px; }
+        .related-card .price { color: var(--gold); font-weight: 700; font-size: 14px; margin-top: 5px; }
+        .back-link { color: var(--gold); margin-bottom: 20px; display: inline-block; }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+<div class="container" id="productContent"><p style="color:#888;">Loading product...</p></div>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBUT83_aDQhTzurYgF1SyCrJDvP8QhkuHU",
+        authDomain: "libas-fabric.firebaseapp.com",
+        projectId: "libas-fabric",
+        storageBucket: "libas-fabric.firebasestorage.app",
+        messagingSenderId: "1021060031586",
+        appId: "1:1021060031586:web:b001d8792f6ef4bd719d3b"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    function getCatImg(cat) { const base='https://source.unsplash.com/400x400/?'; const m={Lawn:'lawn,fabric',Khaddar:'khaddar,wool',Cotton:'cotton,fabric',Silk:'silk,satin',Chiffon:'chiffon,dress',Linen:'linen,textile',Jamawar:'jamawar,shawl',Karandi:'karandi,textile','Wash & Wear':'wash,wear,fabric',Boski:'boski,silk',Other:'fabric,textile'}; return base+(m[cat]||'fabric,textile'); }
+    async function load() {
+        const id = Number(new URLSearchParams(location.search).get('id'));
+        if (!id) return document.getElementById('productContent').innerHTML='<h1>Not found</h1>';
+        const snap = await db.ref('products').once('value');
+        const prods = snap.val()||[];
+        const p = prods.find(x=>x.id===id);
+        if (!p) return document.getElementById('productContent').innerHTML='<h1>Not found</h1>';
+        document.title = p.name + ' | لباسِ ہدایہ';
+        const imgs = (p.images&&p.images.length) ? p.images : [getCatImg(p.category)];
+        document.getElementById('productContent').innerHTML = `
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>${p.name}</h1><div class="category">${p.category}</div>
+            <div class="price">Rs. ${p.price.toLocaleString()}${p.oldPrice>p.price?` <span style="text-decoration:line-through;color:#777;font-size:16px;">Rs. ${p.oldPrice.toLocaleString()}</span>`:''}</div>
+            <div class="gallery">${imgs.map(u=>`<img src="${u}" onclick="window.open(this.src)">`).join('')}</div>
+            <div class="desc">${p.desc||'No description'}</div>
+            <a href="tel:03194327821" class="btn">📞 Order Now</a>
+            <a href="https://wa.me/923194327821?text=I%20want%20to%20order%20${encodeURIComponent(p.name)}" class="btn btn-wa">💬 WhatsApp</a>
+            <h3 style="color:#fff; margin-top:25px;">Related Products</h3>
+            <div class="related">${prods.filter(r=>r.category===p.category&&r.id!==p.id).map(r=>`<a class="related-card" href="product.html?id=${r.id}"><img src="${(r.images&&r.images.length)?r.images[0]:getCatImg(r.category)}"><div class="info"><strong>${r.name}</strong><div class="price">Rs. ${r.price.toLocaleString()}</div></div></a>`).join('')}</div>
+        `;
+    }
+    load();
+</script>
+</body>
+</html>

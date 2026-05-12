@@ -1,52 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/</loc>
+    <loc>https://hidayah.shop/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/about.html</loc>
+    <loc>https://hidayah.shop/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/contact.html</loc>
+    <loc>https://hidayah.shop/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/privacy-policy.html</loc>
+    <loc>https://hidayah.shop/privacy-policy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=1</loc>
+    <loc>https://hidayah.shop/product.html?id=1</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=2</loc>
+    <loc>https://hidayah.shop/product.html?id=2</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=11</loc>
+    <loc>https://hidayah.shop/product.html?id=3</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=12</loc>
+    <loc>https://hidayah.shop/product.html?id=4</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=13</loc>
+    <loc>https://hidayah.shop/product.html?id=5</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rafay1972.github.io/libas-fabric/product.html?id=14</loc>
+    <loc>https://hidayah.shop/product.html?id=6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidayah.shop/product.html?id=7</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidayah.shop/product.html?id=8</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidayah.shop/product.html?id=9</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidayah.shop/product.html?id=10</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

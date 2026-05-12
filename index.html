@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "لباسِ ہدایہ",
-  "url": "https://libasehidayah.com",
-  "logo": "https://libasehidayah.com/favicon.svg"
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "لباسِ ہدایہ",
+      "url": "https://libasehidayah.com",
+      "logo": "https://libasehidayah.com/favicon.svg"
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لباسِ ہدایہ - Premium Pakistani Fabrics 2026 | Lawn, Silk, Khaddar & More</title>
+    
+    <!-- Favicon: Arabic "لباسِ ہدایہ" in a round dark badge -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='30' fill='%230d0d0d' stroke='%23c9a961' stroke-width='6'/%3E%3Ctext x='100' y='115' font-family='Scheherazade New,Amiri,Arial,sans-serif' font-size='68' font-weight='bold' fill='%23c9a961' text-anchor='middle' dominant-baseline='middle'%3E%D9%84%D8%A8%D8%A7%D8%B3%D9%90%20%DB%81%D8%AF%D8%A7%DB%8C%DB%81%3C/text%3E%3C/svg%3E">
+    
     <meta name="google-site-verification" content="KBBfy1dwELmEachIdebxOX2mO6fb7evJLLwNswMeE8" />
     <meta name="description" content="لباسِ ہدایہ - Premium Pakistani fabrics online. Lawn, silk, khaddar, and more. Order via 0319-4327821.">
     <style>
@@ -27,16 +30,33 @@
         body { font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         .arabic { font-family: 'Scheherazade New', 'Amiri', 'Arial', sans-serif; font-size: 1.2em; }
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        
         .top-bar { background: #000; padding: 8px 30px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text2); border-bottom: 1px solid #1a1a1a; flex-wrap: wrap; gap: 10px; }
         .top-bar .contact-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
         .top-bar .contact-info span { display: flex; align-items: center; gap: 6px; color: var(--gold); font-weight: 500; }
         .top-bar .order-cta { background: var(--gold); color: #000; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 0.5px; animation: pulse-gold 2s infinite; }
         @keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(201,169,97,0.6); } 50% { box-shadow: 0 0 0 12px rgba(201,169,97,0); } }
         .top-bar .order-cta:hover { background: #fff; color: #000; transform: scale(1.05); }
+        
         .header { background: var(--bg2); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .header .logo-wrapper { display: flex; align-items: center; gap: 12px; }
+        /* Round LH Logo – Arabic calligraphy style circular badge */
+        .logo-badge {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Scheherazade New', 'Amiri', 'Arial', sans-serif;
+            font-size: 24px; font-weight: 900; color: #0d0d0d;
+            border: 3px solid #fff;
+            box-shadow: 0 0 12px rgba(201,169,97,0.5);
+            letter-spacing: 1px;
+            user-select: none;
+        }
+        .header .logo-text { display: flex; flex-direction: column; }
         .header .logo { font-size: 28px; font-weight: 800; letter-spacing: 1px; color: #fff; display: flex; align-items: baseline; gap: 6px; }
         .header .logo .arabic { color: var(--gold); font-size: 36px; }
         .header .logo .subtitle { font-size: 10px; letter-spacing: 3px; color: var(--text3); font-weight: 400; text-transform: uppercase; }
+        
         .nav-links { display: flex; gap: 25px; list-style: none; align-items: center; flex-wrap: wrap; }
         .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 500; transition: var(--transition); letter-spacing: 0.5px; position: relative; padding: 5px 0; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -44,6 +64,7 @@
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
         .hamburger span { width: 28px; height: 3px; background: var(--gold); border-radius: 2px; transition: var(--transition); }
+        
         .slider-container { position: relative; width: 100%; height: 550px; overflow: hidden; background: #000; }
         .slider-track { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
         .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
@@ -57,15 +78,18 @@
         .slider-dots { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
         .slider-dots .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
         .slider-dots .dot.active { background: var(--gold); border-color: #fff; width: 14px; height: 14px; }
+        
         .section { padding: 60px 30px; max-width: 1300px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 40px; }
         .section-title h2 { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 1px; position: relative; display: inline-block; }
         .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--gold); border-radius: 2px; }
         .section-title p { color: var(--text3); margin-top: 15px; font-size: 14px; }
+        
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 15px; }
         .category-card { background: var(--card); padding: 25px 15px; text-align: center; border-radius: var(--radius); cursor: pointer; transition: var(--transition); border: 2px solid transparent; position: relative; overflow: hidden; }
         .category-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: var(--shadow); }
         .category-card .cat-icon { font-size: 40px; margin-bottom: 10px; } .category-card h4 { color: #fff; font-size: 14px; font-weight: 600; } .category-card .cat-count { color: var(--text3); font-size: 11px; }
+        
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 22px; }
         .product-card { background: var(--card); border-radius: var(--radius); overflow: hidden; transition: var(--transition); border: 1px solid var(--border); position: relative; cursor: pointer; }
         .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.6); border-color: var(--gold); }
@@ -77,9 +101,11 @@
         .product-card .price { font-size: 20px; font-weight: 700; color: var(--gold); } .product-card .price .old-price { font-size: 13px; color: #777; text-decoration: line-through; margin-left: 8px; }
         .product-card .btn-order { display: block; width: 100%; background: var(--gold); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: var(--transition); letter-spacing: 0.5px; font-size: 13px; }
         .product-card .btn-order:hover { background: #fff; letter-spacing: 1px; }
+        
         .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; }
         .filter-tab { padding: 10px 22px; border-radius: 25px; cursor: pointer; border: 2px solid var(--border); background: transparent; color: #ccc; font-weight: 500; transition: var(--transition); font-size: 13px; letter-spacing: 0.5px; }
         .filter-tab:hover, .filter-tab.active { border-color: var(--gold); color: #fff; background: rgba(201,169,97,0.1); } .filter-tab.active { background: var(--gold); color: #000; font-weight: 700; }
+        
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease; overflow-y: auto; }
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         .modal { background: var(--bg2); border-radius: 16px; padding: 30px; max-width: 700px; width: 90%; text-align: center; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-height: 85vh; overflow-y: auto; }
@@ -88,15 +114,7 @@
         .modal .btn-wa:hover { background: #1ebe5b; transform: scale(1.04); } .modal .btn-call { display: inline-block; background: var(--gold); color: #000; padding: 14px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; margin: 8px; transition: var(--transition); }
         .modal .btn-call:hover { background: #fff; transform: scale(1.04); } .modal .btn-close { background: transparent; color: #999; border: 1px solid #444; padding: 10px 25px; border-radius: 25px; cursor: pointer; margin-top: 15px; font-size: 13px; transition: var(--transition); }
         .modal .btn-close:hover { color: #fff; border-color: #fff; }
-        .product-gallery { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 15px 0; }
-        .product-gallery img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; transition: var(--transition); }
-        .product-gallery img:hover { border-color: var(--gold); transform: scale(1.05); }
-        .related-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 15px; margin-top: 20px; }
-        .related-product-card { background: var(--card); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: var(--transition); border: 1px solid var(--border); }
-        .related-product-card:hover { transform: translateY(-3px); border-color: var(--gold); }
-        .related-product-card img { width: 100%; height: 150px; object-fit: cover; }
-        .related-product-card .info { padding: 10px; } .related-product-card h5 { color: #fff; font-size: 13px; margin-bottom: 4px; }
-        .related-product-card .price { color: var(--gold); font-weight: 700; font-size: 14px; }
+        
         .admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9998; display: none; align-items: center; justify-content: center; } .admin-overlay.show { display: flex; }
         .admin-panel { background: var(--bg2); border-radius: 16px; width: 95%; max-width: 1000px; max-height: 90vh; overflow-y: auto; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 30px; }
         .admin-panel h3 { color: #fff; font-size: 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -115,17 +133,21 @@
         .admin-product-item h5 { color: #fff; font-size: 13px; margin: 5px 0; } .admin-product-item .price { color: var(--gold); font-weight: 700; font-size: 14px; }
         .admin-product-item .btn-row { display: flex; gap: 6px; margin-top: 8px; } .admin-product-item .btn-row button { flex: 1; padding: 6px; font-size: 11px; border-radius: 5px; cursor: pointer; border: none; font-weight: 600; transition: var(--transition); }
         .btn-edit { background: var(--gold); color: #000; } .btn-del { background: var(--danger); color: #fff; }
+        
         .features-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; background: var(--bg2); padding: 30px; border-radius: var(--radius); margin: 40px 0; border: 1px solid var(--border); }
         .feature-item { text-align: center; padding: 15px; } .feature-item .feat-icon { font-size: 35px; margin-bottom: 10px; } .feature-item h4 { color: #fff; font-size: 14px; font-weight: 600; } .feature-item p { color: var(--text3); font-size: 12px; }
+        
         .footer { background: #000; padding: 40px 30px 20px; text-align: center; border-top: 1px solid var(--border); }
         .footer .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; }
         .footer .footer-links a { color: var(--text3); text-decoration: none; font-size: 13px; transition: var(--transition); }
         .footer .footer-links a:hover { color: var(--gold); } .footer .admin-link { color: #555; cursor: pointer; font-size: 11px; text-decoration: underline; transition: var(--transition); }
         .footer .admin-link:hover { color: var(--gold); } .footer p { color: #555; font-size: 12px; }
+        
         .float-wa { position: fixed; bottom: 25px; right: 25px; z-index: 999; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 6px 20px rgba(37,211,102,0.4); cursor: pointer; transition: var(--transition); text-decoration: none; animation: bounce-wa 2s infinite; }
         @keyframes bounce-wa { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } } .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.6); }
         .float-call { position: fixed; bottom: 25px; left: 25px; z-index: 999; background: var(--gold); color: #000; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 6px 20px rgba(201,169,97,0.4); transition: var(--transition); text-decoration: none; letter-spacing: 0.5px; }
         .float-call:hover { background: #fff; transform: scale(1.05); }
+        
         @media (max-width: 768px) {
             .slider-container { height: 350px; } .slide-content h1 { font-size: 26px; } .slide-content p { font-size: 13px; }
             .slider-arrow { width: 35px; height: 35px; font-size: 14px; } .slider-arrow.prev { left: 8px; } .slider-arrow.next { right: 8px; }
@@ -152,9 +174,15 @@
         <a href="tel:03194327821" class="order-cta">📞 ORDER NOW</a>
     </div>
     <header class="header">
-        <div class="logo">
-            <span class="arabic">لباسِ ہدایہ</span>
-            <span class="subtitle">Premium Textiles 2026</span>
+        <div class="logo-wrapper">
+            <!-- ✅ Round Arabic "LH" Logo Badge -->
+            <div class="logo-badge" title="لباسِ ہدایہ">لـهـ</div>
+            <div class="logo-text">
+                <div class="logo">
+                    <span class="arabic">لباسِ ہدایہ</span>
+                </div>
+                <span class="subtitle">Premium Textiles 2026</span>
+            </div>
         </div>
         <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <ul class="nav-links" id="navLinks">
@@ -172,15 +200,20 @@
         <button class="slider-arrow next" onclick="changeSlide(1)">▸</button>
         <div class="slider-dots" id="sliderDots"></div>
     </div>
-    <section class="section" id="categories">
-        <div class="section-title"><h2>Fabric Categories</h2><p>Explore our wide range of premium Pakistani fabrics for 2026</p></div>
-        <div class="categories-grid" id="categoriesGrid"></div>
-    </section>
+    
+    <!-- ✅ PRODUCTS SECTION – Ab pehle aayega -->
     <section class="section" id="products">
         <div class="section-title"><h2>Our 2026 Fabric Collection</h2><p>Premium quality fabrics at the best prices</p></div>
         <div class="filter-tabs" id="filterTabs"><button class="filter-tab active" data-cat="all">All Fabrics</button></div>
         <div class="products-grid" id="productsGrid"></div>
     </section>
+    
+    <!-- ✅ CATEGORIES SECTION – Ab baad mein aayega -->
+    <section class="section" id="categories">
+        <div class="section-title"><h2>Fabric Categories</h2><p>Explore our wide range of premium Pakistani fabrics for 2026</p></div>
+        <div class="categories-grid" id="categoriesGrid"></div>
+    </section>
+    
     <section class="section" id="about">
         <div class="features-bar">
             <div class="feature-item"><div class="feat-icon">🏭</div><h4>Premium Quality</h4><p>Finest Pakistani fabrics</p></div>
@@ -206,7 +239,7 @@
     <a href="https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order%20fabric%20from%20لباسِ%20ہدایہ%20Fabrics." target="_blank" class="float-wa" title="Order via WhatsApp">💬</a>
     <a href="tel:03194327821" class="float-call" title="Call to Order">📞 0319-4327821</a>
 
-    <!-- Order Modal (unchanged) -->
+    <!-- Order Modal -->
     <div class="modal-overlay" id="orderModal" style="display:none;">
         <div class="modal">
             <h3>🛒 Order Your Fabric</h3>
@@ -387,7 +420,6 @@
         }
         function filterByCategory(cat) { activeCategory = cat; renderCategories(); renderProducts(); document.getElementById('products').scrollIntoView({behavior:'smooth'}); }
 
-        // ✅ Updated renderProducts – links to product.html instead of modal
         function renderProducts() {
             const filtered = activeCategory==='all' ? cachedProducts : cachedProducts.filter(p => p.category === activeCategory);
             const grid = document.getElementById('productsGrid');

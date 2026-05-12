@@ -40,18 +40,27 @@
         
         .header { background: var(--bg2); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
         .header .logo-wrapper { display: flex; align-items: center; gap: 12px; }
-        /* Round LH Logo */
+        
+        /* ✅ NEW STYLISH ENGLISH LH LOGO */
         .logo-badge {
             width: 52px; height: 52px; border-radius: 50%;
-            background: var(--gold);
+            background: linear-gradient(135deg, #c9a961, #b8942e);
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Scheherazade New', 'Amiri', 'Arial', sans-serif;
-            font-size: 24px; font-weight: 900; color: #0d0d0d;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            font-size: 26px; font-weight: 800; color: #0d0d0d;
             border: 3px solid #fff;
-            box-shadow: 0 0 12px rgba(201,169,97,0.5);
-            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(201,169,97,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
             user-select: none;
+            transition: all 0.3s ease;
         }
+        .logo-badge:hover {
+            background: linear-gradient(135deg, #fff, #c9a961);
+            color: #000;
+            transform: rotate(5deg) scale(1.05);
+        }
+        
         .header .logo-text { display: flex; flex-direction: column; }
         .header .logo { font-size: 28px; font-weight: 800; letter-spacing: 1px; color: #fff; display: flex; align-items: baseline; gap: 6px; }
         .header .logo .arabic { color: var(--gold); font-size: 36px; }
@@ -175,8 +184,8 @@
     </div>
     <header class="header">
         <div class="logo-wrapper">
-            <!-"LH" Logo Badge -->
-            <div class="logo-badge" title="لباسِ ہدایہ">لـهـ</div>
+            <!-- ✅ New Stylish English "LH" Logo Badge -->
+            <div class="logo-badge" title="لباسِ ہدایہ">LH</div>
             <div class="logo-text">
                 <div class="logo">
                     <span class="arabic">لباسِ ہدایہ</span>
@@ -236,7 +245,8 @@
         <p style="margin-top:5px;">📞 Order via Call/WhatsApp: <strong style="color:#c9a961;">0319-4327821</strong></p>
         <span class="admin-link" onclick="openAdminLogin()" title="Admin Panel">🔑 Admin</span>
     </footer>
-    <a href="https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order%20fabric%20from%20لباسِ%20ہدایہ%20Fabrics." target="_blank" class="float-wa" title="Order via WhatsApp">💬</a>
+    <!-- ✅ Updated floating WhatsApp – dynamic message if product info is available -->
+    <a href="#" onclick="return openWhatsAppWithProduct()" class="float-wa" title="Order via WhatsApp">💬</a>
     <a href="tel:03194327821" class="float-call" title="Call to Order">📞 0319-4327821</a>
 
     <!-- Order Modal -->
@@ -247,7 +257,7 @@
             <p style="color:#ccc;">Call us directly to place your order:</p>
             <div class="phone-big">📞 0319-4327821</div>
             <a href="tel:03194327821" class="btn-call">📞 Call Now</a>
-            <a href="https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order%20fabric." target="_blank" class="btn-wa">💬 WhatsApp Order</a>
+            <a href="#" id="orderModalWaLink" class="btn-wa" target="_blank">💬 WhatsApp Order</a>
             <br><button class="btn-close" onclick="closeOrderModal()">Close</button>
         </div>
     </div>
@@ -381,6 +391,7 @@
         let activeCategory = 'all';
         let cachedProducts = [];
         let cachedCategories = [];
+        let currentProductForMessage = null; // store last viewed product info
 
         function initSlider() {
             const track = document.getElementById('sliderTrack');
@@ -441,10 +452,12 @@
         function openOrderModal(productName, price) {
             document.getElementById('orderProductName').textContent = `Product: ${productName} - Rs. ${price.toLocaleString()}`;
             document.getElementById('orderModal').style.display = 'flex';
-            const waLink = document.querySelector('#orderModal .btn-wa');
+            const waLink = document.getElementById('orderModalWaLink');
             if(waLink) waLink.href = `https://wa.me/923194327821?text=Assalam-o-Alaikum!%20I%20want%20to%20order:%20${encodeURIComponent(productName)}%20-%20Rs.%20${price}`;
+            // set current product for floating button as well
+            currentProductForMessage = { name: productName, price };
         }
-        function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
+        function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; currentProductForMessage = null; }
 
         function openAdminLogin() { document.getElementById('adminLoginModal').style.display='flex'; document.getElementById('loginError').style.display='none'; }
         function closeAdminLogin() { document.getElementById('adminLoginModal').style.display='none'; }
@@ -612,6 +625,16 @@
                 cachedCategories = cats; cachedProducts = prods; sliderData = slides;
                 initSlider(); renderCategories(); renderProducts(); populateCategorySelect();
             } catch(e) { console.error(e); }
+        }
+
+        // ✅ Dynamic WhatsApp floating button – includes product info if available
+        function openWhatsAppWithProduct() {
+            let message = "Assalam-o-Alaikum! I want to order fabric from لباسِ ہدایہ.";
+            if (currentProductForMessage) {
+                message = `Assalam-o-Alaikum! I want to order: ${currentProductForMessage.name} - Rs. ${currentProductForMessage.price.toLocaleString()}`;
+            }
+            window.open(`https://wa.me/923194327821?text=${encodeURIComponent(message)}`, '_blank');
+            return false; // prevent default anchor behavior
         }
 
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('show'); }

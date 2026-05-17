@@ -18,11 +18,11 @@
     <button onclick="generateSitemap()">🚀 Generate Latest Sitemap</button>
     <textarea id="output" readonly placeholder="Yahan sitemap aayegi…"></textarea>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK (same as your website) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <script>
-        // ✅ Apni asli Firebase config (same as your website)
+        // ✅ Your actual Firebase config (unchanged)
         const firebaseConfig = {
             apiKey: "AIzaSyBUT83_aDQhTzurYgF1SyCrJDvP8QhkuHU",
             authDomain: "libas-fabric.firebaseapp.com",
@@ -36,7 +36,7 @@
 
         async function generateSitemap() {
             document.getElementById('status').innerText = 'Fetching products from Firebase…';
-            // ✅ YAHAN NEW DOMAIN SET KIYA HAI
+            // ✅ New domain (hidayah.shop)
             const baseUrl = 'https://hidayah.shop/';
             const urls = [];
 
@@ -45,6 +45,8 @@
             urls.push({ loc: baseUrl + 'about.html', changefreq: 'monthly', priority: '0.7' });
             urls.push({ loc: baseUrl + 'contact.html', changefreq: 'monthly', priority: '0.7' });
             urls.push({ loc: baseUrl + 'privacy-policy.html', changefreq: 'monthly', priority: '0.5' });
+            urls.push({ loc: baseUrl + 'shipping.html', changefreq: 'monthly', priority: '0.6' });
+            urls.push({ loc: baseUrl + 'returns.html', changefreq: 'monthly', priority: '0.6' });
 
             try {
                 const snap = await db.ref('products').once('value');

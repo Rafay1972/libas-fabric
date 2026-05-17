@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6203026940702565"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product | لباسِ ہدایہ</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='30' fill='%230d0d0d' stroke='%23c9a961' stroke-width='6'/%3E%3Ctext x='100' y='115' font-family='Scheherazade New,Amiri,Arial,sans-serif' font-size='68' font-weight='bold' fill='%23c9a961' text-anchor='middle' dominant-baseline='middle'%3E%D9%84%D8%A8%D8%A7%D8%B3%D9%90%20%DB%81%D8%AF%D8%A7%DB%8C%DB%81%3C/text%3E%3C/svg%3E">
+    <meta name="google-site-verification" content="bGOuiapFz6I7SWMZh_DINoFbUizddDWZ5usrltVAdkU" />
     <style>
-        :root { --bg: #0d0d0d; --bg2: #1a1a1a; --card: #252525; --gold: #c9a961; --text: #f0f0f0; --text2: #bbb; --border: #333; --danger: #c0392b; --success: #27ae60; }
+        :root { --bg: #0d0d0d; --bg2: #1a1a1a; --card: #252525; --gold: #c9a961; --text: #f0f0f0; --text2: #bbb; --border: #333; }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Segoe UI', 'Poppins', sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
         .container { max-width: 1200px; margin: auto; }
         .back-link { color: var(--gold); margin-bottom: 20px; display: inline-block; text-decoration: none; font-size: 14px; }
         .back-link:hover { text-decoration: underline; }
-        
-        /* Daraz‑style two‑column layout */
         .product-layout { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
-        
-        /* Left Column – Image Gallery */
         .gallery-col { flex: 1 1 480px; min-width: 300px; }
         .main-image { width: 100%; aspect-ratio: 1 / 1; border-radius: 12px; border: 2px solid var(--border); object-fit: cover; cursor: pointer; background: #111; }
         .thumbnail-strip { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
         .thumbnail-strip img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; transition: 0.2s; opacity: 0.7; }
         .thumbnail-strip img:hover, .thumbnail-strip img.active { border-color: var(--gold); opacity: 1; }
-        
-        /* Right Column – Product Info */
         .info-col { flex: 1 1 360px; min-width: 280px; background: var(--bg2); padding: 25px; border-radius: 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 15px; }
         .info-col .category { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
         .info-col h1 { font-size: 24px; color: #fff; margin: 0; }
@@ -36,8 +33,6 @@
         .btn-call:hover { background: #fff; }
         .btn-wa { background: #25d366; color: #fff; flex: 1; }
         .btn-wa:hover { background: #1ebe5b; }
-        
-        /* Related Products */
         .related-section { margin-top: 40px; }
         .related-section h2 { color: #fff; margin-bottom: 20px; font-size: 22px; }
         .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
@@ -47,11 +42,7 @@
         .related-card .info { padding: 12px; }
         .related-card h4 { font-size: 14px; margin-bottom: 4px; }
         .related-card .price { color: var(--gold); font-weight: 700; font-size: 14px; }
-        
-        @media (max-width: 768px) {
-            .product-layout { flex-direction: column; }
-            .main-image { aspect-ratio: 4/3; }
-        }
+        @media (max-width: 768px) { .product-layout { flex-direction: column; } .main-image { aspect-ratio: 4/3; } }
     </style>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -70,28 +61,75 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    
+
     function getCatImg(cat) {
         const base='https://source.unsplash.com/400x400/?';
         const m={Lawn:'lawn,fabric',Khaddar:'khaddar,wool',Cotton:'cotton,fabric',Silk:'silk,satin',Chiffon:'chiffon,dress',Linen:'linen,textile',Jamawar:'jamawar,shawl',Karandi:'karandi,textile','Wash & Wear':'wash,wear,fabric',Boski:'boski,silk',Other:'fabric,textile'};
         return base+(m[cat]||'fabric,textile');
     }
-    
+
     async function load() {
         const id = Number(new URLSearchParams(location.search).get('id'));
-        if (!id) { document.getElementById('productContent').innerHTML='<h1 style="color:#fff;">Product not found</h1><a href="index.html" class="back-link">← Back to Home</a>'; return; }
-        
+        if (!id) return document.getElementById('productContent').innerHTML='<h1 style="color:#fff;">Not found</h1>';
         const snap = await db.ref('products').once('value');
         const prods = snap.val()||[];
         const p = prods.find(x=>x.id===id);
-        if (!p) { document.getElementById('productContent').innerHTML='<h1 style="color:#fff;">Product not found</h1><a href="index.html" class="back-link">← Back to Home</a>'; return; }
-        
-        document.title = p.name + ' | لباسِ ہدایہ';
-        
+        if (!p) return document.getElementById('productContent').innerHTML='<h1 style="color:#fff;">Not found</h1>';
+
+        // Dynamic SEO title and description
+        document.title = `${p.name} | Buy ${p.category} Online | لباسِ ہدایہ`;
+        const metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        metaDesc.content = `${p.name} - Premium ${p.category} fabric from لباسِ ہدایہ. ${p.desc || 'High quality Pakistani fabric.'} Free delivery across Pakistan. Order at 0319-4327821.`;
+        document.head.appendChild(metaDesc);
+
+        // Canonical URL
+        const canon = document.createElement('link');
+        canon.rel = 'canonical';
+        canon.href = `https://hidayah.shop/product.html?id=${p.id}`;
+        document.head.appendChild(canon);
+
+        // Open Graph
+        const ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        ogTitle.content = `${p.name} | Buy ${p.category} Online | لباسِ ہدایہ`;
+        document.head.appendChild(ogTitle);
+        const ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        ogDesc.content = `${p.name} - Premium ${p.category} fabric. Free delivery.`;
+        document.head.appendChild(ogDesc);
+        const ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        ogUrl.content = `https://hidayah.shop/product.html?id=${p.id}`;
+        document.head.appendChild(ogUrl);
+        const firstImg = (p.images && p.images.length>0) ? p.images[0] : getCatImg(p.category);
+        const ogImg = document.createElement('meta');
+        ogImg.setAttribute('property', 'og:image');
+        ogImg.content = firstImg;
+        document.head.appendChild(ogImg);
+
+        // Product schema (JSON-LD)
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": p.name,
+            "description": p.desc || `Premium ${p.category} fabric from لباسِ ہدایہ.`,
+            "image": p.images && p.images.length > 0 ? p.images[0] : getCatImg(p.category),
+            "offers": {
+                "@type": "Offer",
+                "price": p.price.toString(),
+                "priceCurrency": "PKR",
+                "availability": "https://schema.org/InStock",
+                "url": `https://hidayah.shop/product.html?id=${p.id}`
+            }
+        };
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+
         const images = (p.images && p.images.length>0) ? p.images : [getCatImg(p.category)];
         const mainImg = images[0];
-        
-        // Related products
         const related = prods.filter(r => r.category === p.category && r.id !== p.id);
         const relatedHTML = related.map(r => {
             const img = (r.images && r.images.length>0) ? r.images[0] : getCatImg(r.category);
@@ -100,18 +138,16 @@
                 <div class="info"><h4>${r.name}</h4><div class="price">Rs. ${r.price.toLocaleString()}</div></div>
             </a>`;
         }).join('');
-        
+
         document.getElementById('productContent').innerHTML = `
             <a href="index.html" class="back-link">← Back to Home</a>
             <div class="product-layout">
-                <!-- Left: Image Gallery -->
                 <div class="gallery-col">
                     <img id="mainImage" class="main-image" src="${mainImg}" alt="${p.name}" onclick="window.open(this.src)">
                     <div class="thumbnail-strip" id="thumbnailStrip">
                         ${images.map((img, i) => `<img src="${img}" alt="thumb" class="${i===0?'active':''}" onclick="document.getElementById('mainImage').src='${img}'; document.querySelectorAll('.thumbnail-strip img').forEach(t=>t.classList.remove('active')); this.classList.add('active');">`).join('')}
                     </div>
                 </div>
-                <!-- Right: Product Info -->
                 <div class="info-col">
                     <div class="category">${p.category}</div>
                     <h1>${p.name}</h1>
@@ -126,7 +162,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Related Products -->
             <div class="related-section">
                 <h2>Related Products in ${p.category}</h2>
                 <div class="related-grid">${relatedHTML || '<p style="color:#888;">No related products yet.</p>'}</div>

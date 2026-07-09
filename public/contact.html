@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | لباسِ ہدایہ</title>
+    <meta name="description" content="Contact لباسِ ہدایہ for premium Pakistani fabrics. Call or WhatsApp 0319-4327821.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='30' fill='%230d0d0d' stroke='%23c9a961' stroke-width='6'/%3E%3Ctext x='100' y='115' font-family='Scheherazade New,Amiri,Arial,sans-serif' font-size='68' font-weight='bold' fill='%23c9a961' text-anchor='middle' dominant-baseline='middle'%3E%D9%84%D8%A8%D8%A7%D8%B3%D9%90%20%DB%81%D8%AF%D8%A7%DB%8C%DB%81%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .page-content { background: var(--bg2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); display:flex; gap:40px; flex-wrap:wrap;}
+        .contact-info-col { flex: 1 1 300px; }
+        .contact-form-col { flex: 1 1 400px; background:var(--bg3); padding:30px; border-radius:12px;}
+        .contact-box { background: #111; padding: 25px; border-radius: 12px; text-align: center; margin-bottom: 20px; border:1px solid var(--border); transition:0.3s;}
+        .contact-box:hover { border-color:var(--gold); transform:translateY(-5px);}
+        .contact-box svg { font-size:32px; color:var(--gold); margin-bottom:15px; }
+        .contact-box p { color:#ccc; margin-bottom:10px; font-size:14px;}
+        .contact-box .highlight { font-size:18px; font-weight:700; color:var(--gold); display:block; margin:10px 0;}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo-wrapper">
+            <div class="logo-badge" title="لباسِ ہدایہ">LH</div>
+            <div class="logo-text">
+                <div class="logo"><span class="arabic">لباسِ ہدایہ</span></div>
+                <span class="subtitle">Premium Textiles</span>
+            </div>
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Contact Us</h1>
+        </div>
+        
+        <div class="page-content">
+            <div class="contact-info-col">
+                <p style="color:#ccc; margin-bottom:30px; line-height:1.6;">We are always happy to help! Reach out to us through any of the channels below or fill out the form.</p>
+                
+                <div class="contact-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <h3>Phone / WhatsApp</h3>
+                    <span class="highlight">0319-4327821</span>
+                    <p>We respond within minutes during business hours.</p>
+                </div>
+                
+                <div class="contact-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <h3>Email</h3>
+                    <span class="highlight">info@hidayah.shop</span>
+                    <p>We reply within 24 hours.</p>
+                </div>
+                
+                <div style="margin-top:30px; color:#aaa; font-size:14px; line-height:1.8;">
+                    <strong>Business Hours:</strong> Monday – Saturday (10 AM to 8 PM PST)<br>
+                    <strong>Location:</strong> Pakistan
+                </div>
+            </div>
+
+            <div class="contact-form-col">
+                <h3 style="color:#fff; margin-bottom:20px;">Send a Message</h3>
+                <form id="contactForm" onsubmit="submitContact(event)">
+                    <div class="form-group" id="nameGroup">
+                        <label>Name *</label>
+                        <input type="text" id="contactName" required>
+                        <span class="error-msg">Name is required.</span>
+                    </div>
+                    <div class="form-group" id="emailGroup">
+                        <label>Email *</label>
+                        <input type="email" id="contactEmail" required>
+                        <span class="error-msg">Valid email is required.</span>
+                    </div>
+                    <div class="form-group" id="phoneGroup">
+                        <label>Phone (Optional)</label>
+                        <input type="text" id="contactPhone" placeholder="03xx-xxxxxxx">
+                        <span class="error-msg">Invalid phone format.</span>
+                    </div>
+                    <div class="form-group" id="messageGroup">
+                        <label>Message *</label>
+                        <textarea id="contactMessage" rows="5" required></textarea>
+                        <span class="error-msg">Message must be at least 10 characters.</span>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn">Send Message</button>
+                    <div id="formSuccess" style="display:none; color:var(--success); margin-top:15px; text-align:center; font-weight:600;">Message sent successfully!</div>
+                    <div id="formError" style="display:none; color:var(--danger); margin-top:15px; text-align:center;">Failed to send message.</div>
+                </form>
+            </div>
+        </div>
+        <p style="margin-top:20px;"><a href="/" style="color:var(--gold); text-decoration:none;">&larr; Back to Home</a></p>
+    </div>
+
+    <script src="/js/icons.js"></script>
+    <script>
+        async function submitContact(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const successDiv = document.getElementById('formSuccess');
+            const errorDiv = document.getElementById('formError');
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            successDiv.style.display = 'none';
+            errorDiv.style.display = 'none';
+
+            const payload = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                message: document.getElementById('contactMessage').value
+            };
+
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    successDiv.style.display = 'block';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    errorDiv.textContent = data.error || 'Submission failed.';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (err) {
+                errorDiv.textContent = 'Network error.';
+                errorDiv.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+            }
+        }
+    </script>
+</body>
+</html>

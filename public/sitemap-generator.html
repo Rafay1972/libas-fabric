@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sitemap Generator | hidayah.shop</title>
+    <style>
+        body { background: #0d0d0d; color: #f0f0f0; font-family: 'Segoe UI', sans-serif; padding: 30px; }
+        h2 { color: #c9a961; }
+        button { background: #c9a961; color: #000; border: none; padding: 14px 30px; border-radius: 30px; font-weight: 700; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
+        button:hover { background: #fff; }
+        textarea { width: 100%; height: 350px; background: #1a1a1a; color: #c9a961; border: 2px solid #c9a961; border-radius: 10px; padding: 15px; font-family: monospace; }
+        .status { color: #888; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>🗺️ Sitemap Generator for hidayah.shop</h2>
+    <p class="status" id="status">Ready to generate sitemap…</p>
+    <button onclick="generateSitemap()">🚀 Generate Latest Sitemap</button>
+    <textarea id="output" readonly placeholder="Yahan sitemap aayegi…"></textarea>
+
+    <!-- Firebase SDK (same as your website) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script>
+        // ✅ Your actual Firebase config (unchanged)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBUT83_aDQhTzurYgF1SyCrJDvP8QhkuHU",
+            authDomain: "libas-fabric.firebaseapp.com",
+            projectId: "libas-fabric",
+            storageBucket: "libas-fabric.firebasestorage.app",
+            messagingSenderId: "1021060031586",
+            appId: "1:1021060031586:web:b001d8792f6ef4bd719d3b"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        async function generateSitemap() {
+            document.getElementById('status').innerText = 'Fetching products from Firebase…';
+            // ✅ New domain (hidayah.shop)
+            const baseUrl = 'https://hidayah.shop/';
+            const urls = [];
+
+            // Static pages
+            urls.push({ loc: baseUrl, changefreq: 'weekly', priority: '1.0' });
+            urls.push({ loc: baseUrl + 'about.html', changefreq: 'monthly', priority: '0.7' });
+            urls.push({ loc: baseUrl + 'contact.html', changefreq: 'monthly', priority: '0.7' });
+            urls.push({ loc: baseUrl + 'privacy-policy.html', changefreq: 'monthly', priority: '0.5' });
+            urls.push({ loc: baseUrl + 'shipping.html', changefreq: 'monthly', priority: '0.6' });
+            urls.push({ loc: baseUrl + 'returns.html', changefreq: 'monthly', priority: '0.6' });
+
+            try {
+                const snap = await db.ref('products').once('value');
+                const products = snap.val();
+                if (products) {
+                    products.forEach(p => {
+                        urls.push({
+                            loc: baseUrl + 'product.html?id=' + p.id,
+                            changefreq: 'weekly',
+                            priority: '0.8'
+                        });
+                    });
+                }
+                document.getElementById('status').innerText = `✅ ${products ? products.length : 0} products found. Sitemap generated!`;
+            } catch (err) {
+                document.getElementById('status').innerText = '❌ Error: ' + err.message;
+                return;
+            }
+
+            let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+            xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+            urls.forEach(u => {
+                xml += '  <url>\n';
+                xml += '    <loc>' + u.loc + '</loc>\n';
+                xml += '    <changefreq>' + u.changefreq + '</changefreq>\n';
+                xml += '    <priority>' + u.priority + '</priority>\n';
+                xml += '  </url>\n';
+            });
+            xml += '</urlset>';
+            document.getElementById('output').value = xml;
+        }
+    </script>
+</body>
+</html>

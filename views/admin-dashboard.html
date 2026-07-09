@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | لباسِ ہدایہ</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='30' fill='%230d0d0d' stroke='%23c9a961' stroke-width='6'/%3E%3Ctext x='100' y='115' font-family='Scheherazade New,Amiri,Arial,sans-serif' font-size='68' font-weight='bold' fill='%23c9a961' text-anchor='middle' dominant-baseline='middle'%3E%D9%84%D8%A8%D8%A7%D8%B3%D9%90%20%DB%81%D8%AF%D8%A7%DB%8C%DB%81%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        body { background: var(--bg2); }
+        .admin-layout { display:flex; min-height:100vh; }
+        
+        .admin-sidebar { width:250px; background:var(--bg); border-right:1px solid var(--border); padding:20px 0; display:flex; flex-direction:column; }
+        .admin-brand { padding:0 20px 20px; border-bottom:1px solid var(--border); margin-bottom:20px; display:flex; align-items:center; gap:10px; color:var(--gold); font-weight:800; font-size:20px; }
+        .admin-nav { display:flex; flex-direction:column; gap:5px; padding:0 15px; }
+        .admin-nav-item { padding:12px 15px; color:#ccc; text-decoration:none; border-radius:8px; transition:0.2s; display:flex; align-items:center; gap:10px; cursor:pointer; }
+        .admin-nav-item:hover, .admin-nav-item.active { background:rgba(201,169,97,0.1); color:var(--gold); font-weight:600; }
+        .admin-logout { margin-top:auto; padding:0 15px; }
+        
+        .admin-main { flex:1; padding:30px; overflow-y:auto; }
+        
+        .login-overlay { position:fixed; inset:0; background:var(--bg); z-index:9999; display:flex; align-items:center; justify-content:center; }
+        .login-box { background:var(--bg2); padding:40px; border-radius:16px; border:1px solid var(--border); width:100%; max-width:400px; text-align:center; }
+        
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-bottom:30px; }
+        .stat-card { background:var(--bg3); padding:20px; border-radius:12px; border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; }
+        .stat-card h3 { color:#888; font-size:14px; margin-bottom:10px; }
+        .stat-card .value { color:var(--gold); font-size:32px; font-weight:800; }
+        
+        .data-table { width:100%; border-collapse:collapse; margin-top:20px; background:var(--bg3); border-radius:12px; overflow:hidden; border:1px solid var(--border); }
+        .data-table th, .data-table td { padding:12px 15px; text-align:left; border-bottom:1px solid var(--border); }
+        .data-table th { background:var(--bg); color:var(--gold); font-weight:600; font-size:14px; }
+        .data-table td { color:#ccc; font-size:14px; }
+        .data-table tr:hover { background:var(--bg2); }
+        
+        .status-badge { padding:4px 8px; border-radius:12px; font-size:11px; font-weight:700; text-transform:uppercase; }
+        .status-pending { background:rgba(241, 196, 15, 0.2); color:#f1c40f; }
+        .status-confirmed { background:rgba(52, 152, 219, 0.2); color:#3498db; }
+        .status-shipped { background:rgba(155, 89, 182, 0.2); color:#9b59b6; }
+        .status-delivered { background:rgba(46, 204, 113, 0.2); color:#2ecc71; }
+        .status-cancelled { background:rgba(231, 76, 60, 0.2); color:#e74c3c; }
+
+        .btn-sm { padding:6px 12px; font-size:12px; border-radius:6px; font-weight:600; cursor:pointer; border:none; transition:0.2s;}
+        .btn-edit { background:var(--gold); color:#000; }
+        .btn-edit:hover { background:#fff; }
+        .btn-del { background:var(--danger); color:#fff; }
+        .btn-del:hover { background:#c0392b; }
+        
+        .admin-section { display:none; }
+        .admin-section.active { display:block; animation:fadeIn 0.3s; }
+        
+        .form-row { display:flex; gap:15px; margin-bottom:15px; }
+        .form-row .form-group { flex:1; margin-bottom:0; }
+    </style>
+</head>
+<body>
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <h2 style="color:var(--gold); margin-bottom:25px;">Admin Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary" id="loginBtn">Login</button>
+                <div id="loginError" style="color:var(--danger); margin-top:15px; display:none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-layout" style="display:none;" id="adminLayout">
+        <div class="admin-sidebar">
+            <div class="admin-brand">
+                <div class="logo-badge" style="width:36px; height:36px; font-size:16px;">LH</div>
+                Admin Panel
+            </div>
+            
+            <div class="admin-nav">
+                <a class="admin-nav-item active" onclick="switchSection('dashboard', this)">
+                    Dashboard
+                </a>
+                <a class="admin-nav-item" onclick="switchSection('orders', this)">
+                    Orders
+                </a>
+                <a class="admin-nav-item" onclick="switchSection('products', this)">
+                    Products
+                </a>
+                <a class="admin-nav-item" onclick="switchSection('categories', this)">
+                    Categories
+                </a>
+                <a class="admin-nav-item" onclick="switchSection('slides', this)">
+                    Slides
+                </a>
+            </div>
+            
+            <div class="admin-logout">
+                <button class="btn-primary" style="background:#333; color:#fff;" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="admin-main">
+            <!-- Dashboard Section -->
+            <div id="section-dashboard" class="admin-section active">
+                <h2 style="color:#fff; margin-bottom:20px;">Dashboard Overview</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <p style="color:#888;">Loading stats...</p>
+                </div>
+            </div>
+            
+            <!-- Orders Section -->
+            <div id="section-orders" class="admin-section">
+                <h2 style="color:#fff; margin-bottom:20px;">Recent Orders</h2>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="6" style="text-align:center;">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Products Section -->
+            <div id="section-products" class="admin-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="color:#fff;">Products</h2>
+                    <button class="btn-primary" style="width:auto; padding:8px 16px;" onclick="openProductModal()">+ Add Product</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="6" style="text-align:center;">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Categories Section -->
+            <div id="section-categories" class="admin-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="color:#fff;">Categories</h2>
+                    <button class="btn-primary" style="width:auto; padding:8px 16px;" onclick="openCategoryModal()">+ Add Category</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="categoriesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Order</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="4" style="text-align:center;">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slides Section -->
+            <div id="section-slides" class="admin-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="color:#fff;">Hero Slides</h2>
+                    <button class="btn-primary" style="width:auto; padding:8px 16px;" onclick="openSlideModal()">+ Add Slide</button>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="slidesTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Subtitle</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="4" style="text-align:center;">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals Container (Injected by JS) -->
+    <div id="modalsContainer"></div>
+
+    <script src="/js/icons.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

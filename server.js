@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: false, limit: '20mb' }));
 
 app.use(mongoSanitize({
   replaceWith: '_',
-  onSanitize: function(obj) {
+  onSanitize: function (obj) {
     console.warn('[Security] NoSQL injection attempt blocked on key:', obj.key);
   }
 }));
@@ -90,14 +90,14 @@ app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: 0,
   etag: false,
   lastModified: false,
-  setHeaders: function(res, filePath) {
+  setHeaders: function (res, filePath) {
     if (filePath.endsWith('.css')) res.set('Content-Type', 'text/css');
     if (filePath.endsWith('.js')) res.set('Content-Type', 'application/javascript');
   }
 }));
 
 // No-cache for HTML pages during development
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   if (req.path.endsWith('.html') || req.path === '/') {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   }
@@ -117,7 +117,7 @@ app.use('/api/contact', apiLimiter, contactRoutes);
 
 // --- Health Check ---
 
-app.get('/api/health', function(req, res) {
+app.get('/api/health', function (req, res) {
   const mongoose = require('mongoose');
   res.json({
     status: 'ok',
@@ -130,24 +130,28 @@ app.get('/api/health', function(req, res) {
 
 const adminSlug = process.env.ADMIN_SLUG || 'manage-hq-7x4p';
 
-app.get('/' + adminSlug, function(req, res) {
+app.get('/' + adminSlug, function (req, res) {
   res.sendFile(path.join(__dirname, 'views', 'admin-dashboard.html'));
 });
 
 // Honeypot: common admin URLs return 404
-app.get(['/admin', '/wp-admin', '/login', '/dashboard', '/panel', '/backend'], function(req, res) {
+app.get(['/admin', '/wp-admin', '/login', '/dashboard', '/panel', '/backend'], function (req, res) {
   res.status(404).send('Not Found');
 });
 
 // --- Page Routes ---
 
-app.get('/', function(req, res) {
+app.get('/favicon.ico', function (req, res) {
+  res.status(204).end();
+});
+
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // --- Global Error Handler ---
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.error('[Server Error]', err.message);
   if (err.name === 'MulterError') {
     return res.status(400).json({ success: false, error: 'File upload error: ' + err.message });
@@ -182,7 +186,7 @@ async function start() {
     const catCount = await Category.countDocuments();
     if (catCount === 0) {
       const defaultCats = ['Lawn', 'Khaddar', 'Cotton', 'Silk', 'Chiffon', 'Linen', 'Jamawar', 'Karandi', 'Wash & Wear', 'Boski'];
-      await Category.insertMany(defaultCats.map(function(name, i) {
+      await Category.insertMany(defaultCats.map(function (name, i) {
         return { name: name, order: i };
       }));
       console.log('[Server] Default categories seeded.');
@@ -193,7 +197,7 @@ async function start() {
     console.warn('[Server] Starting without database. Frontend will use localStorage fallback.');
   }
 
-  app.listen(PORT, function() {
+  app.listen(PORT, function () {
     console.log('[Server] Running on http://localhost:' + PORT);
     console.log('[Server] Admin panel: http://localhost:' + PORT + '/' + adminSlug);
   });

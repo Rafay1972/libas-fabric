@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | لباسِ ہدایہ</title>
+    <link rel="icon" type="image/png" href="/assests/logo.png">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .wishlist-card {
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+        }
+
+        .wishlist-image {
+            aspect-ratio: 1 / 1;
+            background: #111;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wishlist-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wishlist-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .wishlist-meta {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .wishlist-actions .btn-mini {
+            flex: 1;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist-actions .btn-mini.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #ddd;
+        }
+
+        .wishlist-actions .btn-mini.primary {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .wishlist-empty {
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="logo-wrapper">
+            <img class="logo-badge" src="/assests/logo.png" alt="لباسِ ہدایہ" title="لباسِ ہدایہ">
+            <div class="logo-text">
+                <div class="logo"><span class="arabic">لباسِ ہدایہ</span></div>
+            </div>
+        </a>
+        <div class="header-actions">
+            <a class="action-icon" title="Wishlist" href="/wishlist.html" aria-label="Wishlist"><svg class="svg-icon"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg><span class="badge" id="wishlistCount" style="display:none;">0</span></a>
+            <a class="action-icon" title="Cart" href="/cart.html" aria-label="Cart"><svg class="svg-icon"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                </svg><span class="badge" id="cartCount">0</span></a>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="page-hero">
+            <div class="page-kicker">Wishlist</div>
+            <h1>Save pieces now, come back when you’re ready to order.</h1>
+            <p>Your wishlist keeps your favorite fabrics in one place with fast add-to-cart and remove actions.</p>
+            <a href="/" class="back-home-link">← Back to Home</a>
+        </section>
+
+        <div id="wishlistContent">
+            <p style="color:#888; text-align:center; padding:40px 0;">Loading wishlist...</p>
+        </div>
+    </main>
+
+    <script src="/js/icons.js"></script>
+    <script>
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let wishlistMode = 'guest';
+
+        function getAuthToken() {
+            return localStorage.getItem('token') || localStorage.getItem('authToken') || localStorage.getItem('userToken') || '';
+        }
+
+        function ensureToastHost() {
+            let host = document.getElementById('toastHost');
+            if (!host) {
+                host = document.createElement('div');
+                host.id = 'toastHost';
+                host.className = 'toast-host';
+                document.body.appendChild(host);
+            }
+            return host;
+        }
+
+        function showToast(message, type = 'success') {
+            const host = ensureToastHost();
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.innerHTML = '<span class="toast-dot"></span><div class="toast-text">' + message + '</div>';
+            host.appendChild(toast);
+            window.setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                window.setTimeout(() => toast.remove(), 200);
+            }, 2400);
+        }
+
+        function updateBadges() {
+            const wishBadge = document.getElementById('wishlistCount');
+            const cartBadge = document.getElementById('cartCount');
+            if (wishBadge) {
+                wishBadge.textContent = wishlist.length;
+                wishBadge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+            }
+            if (cartBadge) {
+                cartBadge.textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
+                cartBadge.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        }
+
+        async function syncWishlist() {
+            const token = getAuthToken();
+            if (!token) return false;
+            try {
+                const res = await fetch('/api/wishlist', { headers: { Authorization: 'Bearer ' + token } });
+                const data = await res.json();
+                if (data.success) {
+                    wishlist = (data.wishlist || []).map(item => item && item._id ? item._id : item).filter(Boolean);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    return true;
+                }
+            } catch (err) {
+                console.error(err);
+            }
+            return false;
+        }
+
+        async function fetchProduct(id) {
+            const res = await fetch('/api/products/' + id);
+            const data = await res.json();
+            return data.success ? data.product : null;
+        }
+
+        async function loadWishlist() {
+            const token = getAuthToken();
+            const container = document.getElementById('wishlistContent');
+
+            if (await syncWishlist()) {
+                wishlistMode = 'server';
+            } else {
+                wishlistMode = 'guest';
+            }
+
+            if (!wishlist.length) {
+                container.innerHTML = `
+                    <div class="wishlist-empty">
+                        <h2 style="color:#fff; margin-bottom:10px;">Your wishlist is empty</h2>
+                        <p style="color:#ccc; margin-bottom:22px;">Save products here to revisit them later.</p>
+                        <a href="/" class="btn-primary" style="display:inline-flex; width:auto; padding:12px 24px; text-decoration:none;">Browse Fabrics</a>
+                    </div>
+                `;
+                updateBadges();
+                return;
+            }
+
+            try {
+                const items = [];
+                if (wishlistMode === 'server' && token) {
+                    const res = await fetch('/api/wishlist', { headers: { Authorization: 'Bearer ' + token } });
+                    const data = await res.json();
+                    if (data.success) {
+                        (data.wishlist || []).forEach(function (item) { items.push(item); });
+                    }
+                } else {
+                    for (const id of wishlist) {
+                        const product = await fetchProduct(id);
+                        if (product) items.push(product);
+                    }
+                }
+
+                if (!items.length) {
+                    container.innerHTML = '<div class="wishlist-empty"><h2 style="color:#fff;">No wishlist items found.</h2></div>';
+                    updateBadges();
+                    return;
+                }
+
+                container.innerHTML = '<div class="wishlist-grid">' + items.map(function (item) {
+                    const product = item._id ? item : item.product;
+                    const productId = product._id;
+                    const image = (product.images && product.images.length > 0) ? product.images[0] : createProductPlaceholder(product.category || 'Fabric', '#c9a961', '#151515');
+                    return `
+                        <article class="wishlist-card" id="wish-${productId}">
+                            <div class="wishlist-image" style="background-image:url('${image}')"></div>
+                            <div class="wishlist-body">
+                                <div class="wishlist-title">${product.name}</div>
+                                <div class="wishlist-meta">Rs. ${product.price.toLocaleString()}</div>
+                                <div class="wishlist-actions">
+                                    <a class="btn-mini secondary" href="/product.html?id=${productId}">View</a>
+                                    <button class="btn-mini secondary" onclick="removeFromWishlist('${productId}')">Remove</button>
+                                </div>
+                                <button class="btn-mini primary" onclick="moveToCart('${productId}')">Add to Cart</button>
+                            </div>
+                        </article>
+                    `;
+                }).join('') + '</div>';
+
+                updateBadges();
+            } catch (err) {
+                container.innerHTML = '<div class="wishlist-empty"><h2 style="color:#fff;">Failed to load wishlist.</h2></div>';
+            }
+        }
+
+        async function removeFromWishlist(id) {
+            const token = getAuthToken();
+            if (wishlistMode === 'server' && token) {
+                await fetch('/api/wishlist/' + id, { method: 'DELETE', headers: { Authorization: 'Bearer ' + token } });
+            } else {
+                wishlist = wishlist.filter(function (item) { return item !== id; });
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            showToast('Removed from wishlist');
+            loadWishlist();
+        }
+
+        async function moveToCart(id) {
+            const token = getAuthToken();
+            if (token) {
+                await fetch('/api/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+                    body: JSON.stringify({ productId: id, quantity: 1 })
+                });
+            } else {
+                const existing = cart.find(function (item) { return item.product === id; });
+                if (existing) existing.quantity += 1;
+                else cart.push({ product: id, quantity: 1 });
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            showToast('Added to cart');
+            loadWishlist();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadWishlist);
+    </script>
+</body>
+
+</html>

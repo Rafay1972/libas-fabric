@@ -58,7 +58,7 @@ router.post('/', verifyToken, async function(req, res) {
 
     const user = await User.findById(req.user._id);
     const existingItem = user.cart.find(function(item) {
-      return item.product.toString() === productId;
+      return item.product?.toString() === productId;
     });
 
     if (existingItem) {

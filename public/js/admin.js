@@ -1,7 +1,7 @@
 let adminToken = localStorage.getItem('adminToken') || '';
 
 document.addEventListener('DOMContentLoaded', () => {
-    if(adminToken) {
+    if (adminToken) {
         verifyAdmin();
     }
 });
@@ -12,8 +12,8 @@ async function verifyAdmin() {
             headers: { 'Authorization': 'Bearer ' + adminToken }
         });
         const data = await res.json();
-        
-        if(data.success && data.user.role === 'admin') {
+
+        if (data.success && data.user.role === 'admin') {
             showAdminLayout();
             loadAllData();
         } else {
@@ -30,10 +30,10 @@ async function handleLogin(e) {
     const password = document.getElementById('loginPassword').value;
     const errDiv = document.getElementById('loginError');
     const btn = document.getElementById('loginBtn');
-    
+
     btn.disabled = true;
     errDiv.style.display = 'none';
-    
+
     try {
         const res = await fetch('/api/auth/admin-login', {
             method: 'POST',
@@ -41,8 +41,8 @@ async function handleLogin(e) {
             body: JSON.stringify({ email, password })
         });
         const data = await res.json();
-        
-        if(data.success) {
+
+        if (data.success) {
             adminToken = data.token;
             localStorage.setItem('adminToken', adminToken);
             showAdminLayout();
@@ -74,20 +74,20 @@ function showAdminLayout() {
 function switchSection(sectionId, btn) {
     document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.admin-nav-item').forEach(b => b.classList.remove('active'));
-    
+
     document.getElementById('section-' + sectionId).classList.add('active');
-    if(btn) btn.classList.add('active');
+    if (btn) btn.classList.add('active');
 }
 
 async function fetchWithAuth(url, options = {}) {
-    if(!options.headers) options.headers = {};
-    if(!(options.body instanceof FormData)) {
+    if (!options.headers) options.headers = {};
+    if (!(options.body instanceof FormData)) {
         options.headers['Content-Type'] = 'application/json';
     }
     options.headers['Authorization'] = 'Bearer ' + adminToken;
-    
+
     const res = await fetch(url, options);
-    if(res.status === 401 || res.status === 403) {
+    if (res.status === 401 || res.status === 403) {
         logout();
         throw new Error('Unauthorized');
     }
@@ -106,7 +106,7 @@ function loadAllData() {
 async function loadStats() {
     try {
         const data = await fetchWithAuth('/api/orders/stats');
-        if(data.success) {
+        if (data.success) {
             const s = data.stats;
             document.getElementById('statsGrid').innerHTML = `
                 <div class="stat-card"><h3>Total Revenue</h3><div class="value">Rs. ${s.revenue.toLocaleString()}</div></div>
@@ -122,9 +122,9 @@ async function loadStats() {
 async function loadOrders() {
     try {
         const data = await fetchWithAuth('/api/orders');
-        if(data.success) {
+        if (data.success) {
             const tbody = document.querySelector('#ordersTable tbody');
-            if(data.orders.length === 0) {
+            if (data.orders.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No orders found</td></tr>';
                 return;
             }
@@ -136,11 +136,11 @@ async function loadOrders() {
                     <td>Rs. ${o.totalAmount.toLocaleString()}</td>
                     <td>
                         <select onchange="updateOrderStatus('${o._id}', this.value)" style="background:var(--bg2); color:#fff; padding:4px; border-radius:4px; border:1px solid var(--border);">
-                            <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
-                            <option value="confirmed" ${o.status==='confirmed'?'selected':''}>Confirmed</option>
-                            <option value="shipped" ${o.status==='shipped'?'selected':''}>Shipped</option>
-                            <option value="delivered" ${o.status==='delivered'?'selected':''}>Delivered</option>
-                            <option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option>
+                            <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </td>
                     <td>
@@ -167,15 +167,21 @@ let allCategories = [];
 async function loadCategories() {
     try {
         const data = await fetch('/api/categories').then(r => r.json());
-        if(data.success) {
+        if (data.success) {
             allCategories = data.categories;
             const tbody = document.querySelector('#categoriesTable tbody');
+            if (!allCategories.length) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No categories found</td></tr>';
+                return;
+            }
             tbody.innerHTML = allCategories.map(c => `
                 <tr>
+                    <td><img src="${c.image || createCategoryImage(c.name || 'Category', '#c9a961', '#151515')}" style="width:80px; height:56px; object-fit:cover; border-radius:8px; border:1px solid var(--border);"></td>
                     <td>${c.name}</td>
                     <td>${c.order}</td>
-                    <td><span class="status-badge ${c.isActive?'status-delivered':'status-cancelled'}">${c.isActive?'Active':'Inactive'}</span></td>
+                    <td><span class="status-badge ${c.isActive ? 'status-delivered' : 'status-cancelled'}">${c.isActive ? 'Active' : 'Inactive'}</span></td>
                     <td>
+                        <button class="btn-sm btn-edit" onclick='openCategoryModal(${JSON.stringify(c).replace(/'/g, "&#39;")})'>Edit</button>
                         <button class="btn-sm btn-del" onclick="deleteCategory('${c._id}')">Delete</button>
                     </td>
                 </tr>
@@ -184,21 +190,70 @@ async function loadCategories() {
     } catch (err) { console.error(err); }
 }
 
-function openCategoryModal() {
-    const name = prompt('Enter new category name:');
-    if(name) {
-        fetchWithAuth('/api/categories', {
-            method: 'POST',
-            body: JSON.stringify({ name })
-        }).then(res => {
-            if(res.success) loadCategories();
-            else alert(res.error || 'Failed to create');
+function openCategoryModal(category = null) {
+    const modalTitle = category ? 'Edit Category' : 'Add Category';
+    const submitLabel = category ? 'Update Category' : 'Save Category';
+    const currentImage = category && category.image ? category.image : '';
+
+    document.getElementById('modalsContainer').innerHTML = `
+        <div class="modal-overlay">
+            <div class="modal" style="max-width:500px;">
+                <h3 style="color:#fff; margin-bottom:20px;">${modalTitle}</h3>
+                <form id="categoryForm" onsubmit="submitCategory(event, ${category ? `'${category._id}'` : 'null'})">
+                    <div class="form-group">
+                        <input type="text" id="cName" placeholder="Category Name" value="${category ? category.name : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="cOrder" placeholder="Order" value="${category ? category.order : allCategories.length}" min="0">
+                    </div>
+                    <div class="form-group" style="text-align:left; color:#ccc;">
+                        <label>Category Image</label>
+                        <input type="file" id="cImage" accept="image/*">
+                    </div>
+                    ${currentImage ? `<div style="margin-bottom:12px;"><img src="${currentImage}" alt="Current category image" style="width:100%; max-height:160px; object-fit:cover; border-radius:12px; border:1px solid var(--border);"></div>` : ''}
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button type="button" class="btn-primary" style="background:#555;" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">${submitLabel}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+}
+
+async function submitCategory(e, id) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('name', document.getElementById('cName').value);
+    formData.append('order', document.getElementById('cOrder').value || '0');
+    const imageFile = document.getElementById('cImage').files[0];
+    if (imageFile) {
+        formData.append('image', imageFile);
+    }
+
+    const url = id ? '/api/categories/' + id : '/api/categories';
+    const method = id ? 'PUT' : 'POST';
+
+    try {
+        const res = await fetch(url, {
+            method: method,
+            headers: { 'Authorization': 'Bearer ' + adminToken },
+            body: formData
         });
+        const data = await res.json();
+        if (data.success) {
+            closeModal();
+            loadCategories();
+        } else {
+            alert(data.error || 'Failed to save category');
+        }
+    } catch (err) {
+        alert('Failed to save category');
     }
 }
 
 async function deleteCategory(id) {
-    if(confirm('Delete this category?')) {
+    if (confirm('Delete this category?')) {
         await fetchWithAuth('/api/categories/' + id, { method: 'DELETE' });
         loadCategories();
     }
@@ -208,7 +263,7 @@ async function deleteCategory(id) {
 async function loadProducts() {
     try {
         const data = await fetchWithAuth('/api/products/all');
-        if(data.success) {
+        if (data.success) {
             const tbody = document.querySelector('#productsTable tbody');
             tbody.innerHTML = data.products.map(p => {
                 const img = p.images && p.images.length ? p.images[0] : '';
@@ -218,7 +273,7 @@ async function loadProducts() {
                     <td>${p.name}</td>
                     <td>${p.category}</td>
                     <td>Rs. ${p.price}</td>
-                    <td><span class="status-badge ${p.isActive?'status-delivered':'status-cancelled'}">${p.isActive?'Active':'Inactive'}</span></td>
+                    <td><span class="status-badge ${p.isActive ? 'status-delivered' : 'status-cancelled'}">${p.isActive ? 'Active' : 'Inactive'}</span></td>
                     <td>
                         <button class="btn-sm btn-del" onclick="deleteProduct('${p._id}')">Delete</button>
                     </td>
@@ -229,11 +284,11 @@ async function loadProducts() {
 }
 
 function openProductModal() {
-    if(allCategories.length === 0) {
+    if (allCategories.length === 0) {
         alert('Please create a category first.');
         return;
     }
-    
+
     document.getElementById('modalsContainer').innerHTML = `
         <div class="modal-overlay">
             <div class="modal" style="max-width:500px;">
@@ -279,14 +334,14 @@ async function submitProduct(e) {
     formData.append('category', document.getElementById('pCat').value);
     formData.append('price', document.getElementById('pPrice').value);
     const oldP = document.getElementById('pOldPrice').value;
-    if(oldP) formData.append('oldPrice', oldP);
+    if (oldP) formData.append('oldPrice', oldP);
     formData.append('description', document.getElementById('pDesc').value);
-    
+
     const files = document.getElementById('pImages').files;
-    for(let i=0; i<files.length; i++) {
+    for (let i = 0; i < files.length; i++) {
         formData.append('images', files[i]);
     }
-    
+
     try {
         const res = await fetch('/api/products', {
             method: 'POST',
@@ -294,19 +349,19 @@ async function submitProduct(e) {
             body: formData
         });
         const data = await res.json();
-        if(data.success) {
+        if (data.success) {
             closeModal();
             loadProducts();
         } else {
             alert(data.error);
         }
-    } catch(err) {
+    } catch (err) {
         alert('Failed to save product');
     }
 }
 
 async function deleteProduct(id) {
-    if(confirm('Delete product?')) {
+    if (confirm('Delete product?')) {
         await fetchWithAuth('/api/products/' + id, { method: 'DELETE' });
         loadProducts();
     }
@@ -316,7 +371,7 @@ async function deleteProduct(id) {
 async function loadSlides() {
     try {
         const data = await fetch('/api/slides').then(r => r.json());
-        if(data.success) {
+        if (data.success) {
             const tbody = document.querySelector('#slidesTable tbody');
             tbody.innerHTML = data.slides.map(s => `
                 <tr>
@@ -327,7 +382,7 @@ async function loadSlides() {
                 </tr>
             `).join('');
         }
-    } catch(err) { console.error(err); }
+    } catch (err) { console.error(err); }
 }
 
 function openSlideModal() {
@@ -358,7 +413,7 @@ async function submitSlide(e) {
     formData.append('title', document.getElementById('sTitle').value);
     formData.append('subtitle', document.getElementById('sSub').value);
     formData.append('image', document.getElementById('sImg').files[0]);
-    
+
     try {
         const res = await fetch('/api/slides', {
             method: 'POST',
@@ -366,17 +421,17 @@ async function submitSlide(e) {
             body: formData
         });
         const data = await res.json();
-        if(data.success) {
+        if (data.success) {
             closeModal();
             loadSlides();
         } else {
             alert(data.error);
         }
-    } catch(err) { alert('Failed to save slide'); }
+    } catch (err) { alert('Failed to save slide'); }
 }
 
 async function deleteSlide(id) {
-    if(confirm('Delete slide?')) {
+    if (confirm('Delete slide?')) {
         await fetchWithAuth('/api/slides/' + id, { method: 'DELETE' });
         loadSlides();
     }

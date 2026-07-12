@@ -14,3 +14,47 @@ const SVG_ICONS = {
 function getCategoryIcon(category) {
   return SVG_ICONS.fabric; // Simplification, can add more later
 }
+
+function svgDataUri(svg) {
+  return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+function unsplashFeatured(query, width = 1600, height = 900) {
+  return `https://source.unsplash.com/featured/${width}x${height}/?${encodeURIComponent(query)}`;
+}
+
+function createFabricHeroImage(title, subtitle, accent, background) {
+  const text = `${title || ''} ${subtitle || ''}`.toLowerCase();
+  if (text.includes('shawl')) return unsplashFeatured('pakistani men shawl traditional');
+  if (text.includes('suit') || text.includes('formal') || text.includes('sherwani') || text.includes('kurta')) {
+    return unsplashFeatured('pakistani men sherwani formal wear');
+  }
+  return unsplashFeatured('pakistani textile fabric closeup');
+}
+
+function createCategoryImage(label, accent, background) {
+  const key = String(label || '').toLowerCase();
+  if (key.includes('shawl') || key.includes('khaddar') || key.includes('karandi')) {
+    return unsplashFeatured('pakistani men shawl winter fabric', 1200, 1200);
+  }
+  if (key.includes('suit') || key.includes('wash & wear') || key.includes('boski') || key.includes('jamawar')) {
+    return unsplashFeatured('pakistani men suit sherwani formal', 1200, 1200);
+  }
+  if (key.includes('silk')) return unsplashFeatured('silk fabric luxury textile', 1200, 1200);
+  if (key.includes('chiffon')) return unsplashFeatured('embroidered chiffon fabric', 1200, 1200);
+  if (key.includes('cotton') || key.includes('lawn') || key.includes('linen')) return unsplashFeatured('pakistani fabric closeup', 1200, 1200);
+  return unsplashFeatured('pakistani textile fabric pattern', 1200, 1200);
+}
+
+function createProductPlaceholder(label, accent, background, size = 400) {
+  const key = String(label || '').toLowerCase();
+  if (key.includes('shawl') || key.includes('khaddar') || key.includes('karandi')) {
+    return unsplashFeatured('pakistani men shawl texture', size, size);
+  }
+  if (key.includes('suit') || key.includes('wash & wear') || key.includes('boski') || key.includes('jamawar')) {
+    return unsplashFeatured('pakistani men suit formal wear', size, size);
+  }
+  if (key.includes('silk')) return unsplashFeatured('silk fabric closeup', size, size);
+  if (key.includes('chiffon')) return unsplashFeatured('chiffon fabric texture', size, size);
+  return unsplashFeatured('pakistani fabric textile closeup', size, size);
+}

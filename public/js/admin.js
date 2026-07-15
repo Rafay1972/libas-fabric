@@ -100,6 +100,7 @@ function loadAllData() {
     loadProducts();
     loadCategories();
     loadSlides();
+    loadMessages();
 }
 
 // Stats
@@ -275,6 +276,7 @@ async function loadProducts() {
                     <td>Rs. ${p.price}</td>
                     <td><span class="status-badge ${p.isActive ? 'status-delivered' : 'status-cancelled'}">${p.isActive ? 'Active' : 'Inactive'}</span></td>
                     <td>
+                        <button class="btn-sm btn-edit" onclick='openProductModal(${JSON.stringify(p).replace(/'/g, "&#39;")})'>Edit</button>
                         <button class="btn-sm btn-del" onclick="deleteProduct('${p._id}')">Delete</button>
                     </td>
                 </tr>
@@ -283,43 +285,53 @@ async function loadProducts() {
     } catch (err) { console.error(err); }
 }
 
-function openProductModal() {
+function openProductModal(product = null) {
     if (allCategories.length === 0) {
         alert('Please create a category first.');
         return;
     }
 
+    const title = product ? 'Edit Product' : 'Add Product';
+    const submitLabel = product ? 'Update Product' : 'Save Product';
+
     document.getElementById('modalsContainer').innerHTML = `
         <div class="modal-overlay">
             <div class="modal" style="max-width:500px;">
-                <h3 style="color:#fff; margin-bottom:20px;">Add Product</h3>
-                <form id="productForm" onsubmit="submitProduct(event)">
+                <h3 style="color:#fff; margin-bottom:20px;">${title}</h3>
+                <form id="productForm" onsubmit="submitProduct(event, ${product ? `'${product._id}'` : 'null'})">
                     <div class="form-group">
-                        <input type="text" id="pName" placeholder="Product Name" required>
+                        <input type="text" id="pName" placeholder="Product Name" value="${product ? product.name : ''}" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <select id="pCat" required>
-                                ${allCategories.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}
+                                ${allCategories.map(c => `<option value="${c.name}" ${product && product.category === c.name ? 'selected' : ''}>${c.name}</option>`).join('')}
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="number" id="pPrice" placeholder="Price" required>
+                            <input type="number" id="pPrice" placeholder="Price" value="${product ? product.price : ''}" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" id="pOldPrice" placeholder="Old Price (Optional)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="number" id="pOldPrice" placeholder="Old Price (Optional)" value="${product && product.oldPrice ? product.oldPrice : ''}">
+                        </div>
+                        ${product ? `
+                        <div class="form-group" style="display:flex; align-items:center; gap:10px; color:#fff;">
+                            <input type="checkbox" id="pIsActive" ${product.isActive ? 'checked' : ''}>
+                            <label for="pIsActive">Active (Visible)</label>
+                        </div>` : ''}
                     </div>
                     <div class="form-group">
-                        <textarea id="pDesc" placeholder="Description" rows="3"></textarea>
+                        <textarea id="pDesc" placeholder="Description" rows="3">${product ? product.description || '' : ''}</textarea>
                     </div>
                     <div class="form-group" style="text-align:left; color:#ccc;">
-                        <label>Images</label>
+                        <label>Images (Leave empty to keep existing)</label>
                         <input type="file" id="pImages" multiple accept="image/*">
                     </div>
                     <div style="display:flex; gap:10px; margin-top:20px;">
                         <button type="button" class="btn-primary" style="background:#555;" onclick="closeModal()">Cancel</button>
-                        <button type="submit" class="btn-primary">Save Product</button>
+                        <button type="submit" class="btn-primary">${submitLabel}</button>
                     </div>
                 </form>
             </div>
@@ -327,7 +339,7 @@ function openProductModal() {
     `;
 }
 
-async function submitProduct(e) {
+async function submitProduct(e, id) {
     e.preventDefault();
     const formData = new FormData();
     formData.append('name', document.getElementById('pName').value);
@@ -337,14 +349,21 @@ async function submitProduct(e) {
     if (oldP) formData.append('oldPrice', oldP);
     formData.append('description', document.getElementById('pDesc').value);
 
+    if (document.getElementById('pIsActive')) {
+        formData.append('isActive', document.getElementById('pIsActive').checked);
+    }
+
     const files = document.getElementById('pImages').files;
     for (let i = 0; i < files.length; i++) {
         formData.append('images', files[i]);
     }
 
+    const url = id ? '/api/products/' + id : '/api/products';
+    const method = id ? 'PUT' : 'POST';
+
     try {
-        const res = await fetch('/api/products', {
-            method: 'POST',
+        const res = await fetch(url, {
+            method: method,
             headers: { 'Authorization': 'Bearer ' + adminToken },
             body: formData
         });
@@ -435,6 +454,40 @@ async function deleteSlide(id) {
         await fetchWithAuth('/api/slides/' + id, { method: 'DELETE' });
         loadSlides();
     }
+}
+
+// Messages
+async function loadMessages() {
+    try {
+        const data = await fetchWithAuth('/api/contact');
+        if (data.success) {
+            const tbody = document.querySelector('#messagesTable tbody');
+            if (data.messages.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No messages found</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.messages.map(m => `
+                <tr style="${m.status === 'unread' ? 'font-weight: bold; background: rgba(255,255,255,0.05);' : ''}">
+                    <td>${new Date(m.createdAt).toLocaleDateString()}</td>
+                    <td>${m.name}</td>
+                    <td>${m.email}</td>
+                    <td>${m.phone || '-'}</td>
+                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${m.message}">${m.message}</td>
+                    <td><span class="status-badge ${m.status === 'unread' ? 'status-pending' : 'status-delivered'}">${m.status}</span></td>
+                    <td>
+                        ${m.status === 'unread' ? `<button class="btn-sm btn-edit" onclick="markMessageRead('${m._id}')">Mark Read</button>` : '-'}
+                    </td>
+                </tr>
+            `).join('');
+        }
+    } catch (err) { console.error(err); }
+}
+
+async function markMessageRead(id) {
+    try {
+        await fetchWithAuth('/api/contact/' + id + '/read', { method: 'PUT' });
+        loadMessages();
+    } catch (err) { console.error(err); }
 }
 
 function closeModal() {

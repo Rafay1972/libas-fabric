@@ -281,6 +281,9 @@
                 <a class="admin-nav-item" onclick="switchSection('slides', this)">
                     Slides
                 </a>
+                <a class="admin-nav-item" onclick="switchSection('messages', this)">
+                    Messages
+                </a>
             </div>
 
             <div class="admin-logout">
@@ -396,6 +399,31 @@
                         <tbody>
                             <tr>
                                 <td colspan="4" style="text-align:center;">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="section-messages" class="admin-section">
+                <h2 style="color:#fff; margin-bottom:20px;">Contact Messages</h2>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="messagesTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" style="text-align:center;">Loading messages...</td>
                             </tr>
                         </tbody>
                     </table>

@@ -236,7 +236,8 @@ function renderCategories() {
   if (tabs && categories.length > 0) {
     tabs.innerHTML = `<button class="filter-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all" onclick="filterProducts('all')">All Fabrics</button>`;
     categories.forEach(cat => {
-      tabs.innerHTML += `<button class="filter-tab ${activeCategory === cat.name ? 'active' : ''}" data-cat="${cat.name}" onclick="filterProducts('${cat.name}')">${cat.name}</button>`;
+      const escapedCat = cat.name.replace(/'/g, "\\'");
+      tabs.innerHTML += `<button class="filter-tab ${activeCategory === cat.name ? 'active' : ''}" data-cat="${cat.name.replace(/"/g, '&quot;')}" onclick="filterProducts('${escapedCat}')">${cat.name}</button>`;
     });
   }
 
@@ -244,8 +245,9 @@ function renderCategories() {
     grid.innerHTML = categories.map(cat => {
       const count = products.filter(p => p.category === cat.name).length;
       const imageUrl = cat.image || CATEGORY_IMAGES[cat.name] || createCategoryImage(cat.name, '#c9a961', '#151515');
+      const escapedCat = cat.name.replace(/'/g, "\\'");
       return `
-        <div class="category-card" onclick="filterProducts('${cat.name}')">
+        <div class="category-card" onclick="filterProducts('${escapedCat}')">
           <div class="cat-media" style="background-image:url('${imageUrl}')"></div>
           <div class="cat-overlay"></div>
           <div class="cat-body">

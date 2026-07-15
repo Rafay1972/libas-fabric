@@ -752,35 +752,81 @@ body {
 
 .features-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  background: var(--bg2);
-  padding: 30px;
-  border-radius: var(--radius);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+  padding: 50px 0;
   margin: 40px 0;
-  border: 1px solid var(--border);
 }
 
 .feature-item {
   text-align: center;
-  padding: 15px;
+  padding: 36px 24px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(201, 169, 97, 0.18);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(201, 169, 97, 0.15), 0 4px 15px rgba(0,0,0,0.4);
+  border-color: rgba(201, 169, 97, 0.5);
+}
+
+.feature-item:hover::before {
+  opacity: 1;
 }
 
 .feature-item .feat-icon {
-  font-size: 35px;
-  margin-bottom: 10px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 169, 97, 0.1);
+  border: 1px solid rgba(201, 169, 97, 0.25);
+  border-radius: 50%;
   color: var(--gold);
+  transition: background 0.35s ease;
+}
+
+.feature-item:hover .feat-icon {
+  background: rgba(201, 169, 97, 0.2);
+}
+
+.feature-item .feat-icon .svg-icon {
+  width: 26px;
+  height: 26px;
 }
 
 .feature-item h4 {
   color: #fff;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
 }
 
 .feature-item p {
   color: var(--text3);
-  font-size: 12px;
+  font-size: 12.5px;
+  line-height: 1.6;
 }
 
 .footer {
